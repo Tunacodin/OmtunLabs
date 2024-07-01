@@ -11,7 +11,7 @@ const HeroBody = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 10) {
         setVisible(true);
       } else {
         setVisible(false);

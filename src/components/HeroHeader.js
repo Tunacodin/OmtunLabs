@@ -9,10 +9,12 @@ import darkColors from "../consts/darkColors";
 import MainNav2 from "./MainNav2";
 import Stick from "./Stick";
 import bg from "../img/noktadesen.png";
-import { BorderColor } from "@mui/icons-material";
+import { BorderColor, Padding } from "@mui/icons-material";
 import zIndex from "@mui/material/styles/zIndex";
+import { Button } from "@mui/material";
+import PrimaryButton from "./PrimaryButton";
 
-const HeroHeader = () => {
+const HeroHeader = ({text}) => {
   const [headerHeight, setHeaderHeight] = useState(0);
   const headerRef = useRef(null);
 
@@ -33,32 +35,27 @@ const HeroHeader = () => {
         alignItems: "center",
         justifyContent: "center",
         height: "110vh",
-        padding: 10,
-        marginTop: "-6rem",
+        marginTop: "-4rem",
         overflow: "hidden",
+        position: "relative",
       }}
     >
-      
+      <PrimaryButton text="KEŞFET" />
       <div
         style={{
-          color: colors.black,
-          height: "90vh", // Header boyutu %90 viewport yüksekliği
-          width: "80%",
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,
-          marginTop: 10,
+          height: "84vh", // Header boyutu %90 viewport yüksekliği
+          width: "75%",
+          background: "transparent",
           zIndex: 100,
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
           boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
           margin: "auto",
           position: "relative",
           overflow: "hidden",
-          padding: 10,
           marginTop: "10rem",
+          borderRadius: "0 0 5rem 5rem",
         }}
       >
         <div

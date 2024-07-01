@@ -13,7 +13,7 @@ const ImageSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 10000); // Adjust the interval to your desired video length
+    }, 5500); // Adjust the interval to your desired video length
 
     return () => clearInterval(interval);
   }, []);

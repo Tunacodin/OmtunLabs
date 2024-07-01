@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Box, Link, Icon } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Home, MenuBook, LocalMall, MonetizationOn } from "@mui/icons-material"; // Import icons
+import {
+  Home,
+  MenuBook,
+  LocalMall,
+  MonetizationOn,
+  ArrowRight,
+} from "@mui/icons-material";
 import colors from "../consts/colors";
 import Logo from "./Logo";
 import darkColors from "../consts/darkColors";
@@ -37,7 +43,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
   position: "relative",
   display: "flex",
   alignItems: "center",
-  gap: "0.5rem", // Adjust gap between icon and text
+  gap: "0.5rem",
   "&:hover::after": {
     content: '""',
     position: "absolute",
@@ -64,6 +70,41 @@ const StyledLink = styled(Link)(({ theme }) => ({
   },
 }));
 
+const DropdownMenu = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "100%",
+  left: 0,
+  backgroundColor: darkColors.darkBlack,
+  color: "#F7F7F7",
+  minWidth: "200px",
+  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)",
+  zIndex: 1000,
+  display: "none",
+  flexDirection: "column",
+  transition: "transform 0.9s ease-out",
+  padding: theme.spacing(2),
+  "& a": {
+    color: "#F7F7F7",
+    padding: theme.spacing(1),
+    textDecoration: "none",
+    transition: "transform 0.9s ease-out",
+    "&:hover": {
+      backgroundColor: colors.mor,
+    },
+  },
+}));
+
+const KatalogLink = styled(StyledLink)(({ theme }) => ({
+  "&:hover": {
+    "& > .dropdown-menu": {
+      display: "flex",
+    },
+    "& > .arrow-icon": {
+      transform: "rotate(90deg)",
+    },
+  },
+}));
+
 const MainNav2 = () => {
   const [hidden, setHidden] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -71,12 +112,11 @@ const MainNav2 = () => {
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop && scrollTop > 48) {
-      // 3rem * 16px = 48px
       setHidden(true);
     } else {
       setHidden(false);
     }
-    setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop); // For Mobile or negative scrolling
+    setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
   };
 
   useEffect(() => {
@@ -109,9 +149,13 @@ const MainNav2 = () => {
           <StyledLink href="#">
             <Home /> Hakkımızda
           </StyledLink>
-          <StyledLink href="#">
-            <MenuBook /> Katalog
-          </StyledLink>
+          <KatalogLink href="#">
+            <MenuBook /> Katalog <ArrowRight className="arrow-icon" />
+            <DropdownMenu className="dropdown-menu">
+              <Link href="#">Projeler</Link>
+              <Link href="#">Açık Kaynak Ürünler</Link>
+            </DropdownMenu>
+          </KatalogLink>
           <StyledLink href="#">
             <LocalMall /> Ürünler
           </StyledLink>
