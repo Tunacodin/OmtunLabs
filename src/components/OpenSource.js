@@ -1,171 +1,137 @@
-import React, { useState, useEffect } from "react";
-import { AppBar, Toolbar, Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import {
-  Home,
-  MenuBook,
-  LocalMall,
-  MonetizationOn,
-  ArrowRight,
-} from "@mui/icons-material";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
+import { Grid } from "@mui/material";
 import colors from "../consts/colors";
-import Logo from "./Logo";
+import BodyPaper from "./BodyPaper";
+import img3 from "../img/OmTun Black Rounded.png";
+import img1 from "../img//mounth.png";
+import img2 from "../img/web1.png";
+import img4 from "../img/web2.png";
 import darkColors from "../consts/darkColors";
+import bg from "../img/noktadesen.png";
+import "../App.css";
+import noktadesen from "../img/noktadesen.png";
+import Stick from "./Stick";
+import zIndex from "@mui/material/styles/zIndex";
 
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
-  position: "fixed",
-  height: "6rem",
-  top: 0,
-  left: 0,
-  zIndex: 1000,
-  boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
-  transition: "background-color 1s, color 1s, transform 1s ease-in-out",
-  backgroundColor: darkColors.darkBlack,
-  color: "#F7F7F7",
-}));
-
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-around",
-  width: "90%",
-  padding: theme.spacing(2),
-}));
-
-const StyledLink = styled(RouterLink)(({ theme }) => ({
-  fontSize: "1.2rem",
-  fontFamily: "Poppins",
-  color: "inherit",
-  textDecoration: "none",
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-  gap: "0.5rem",
-  "&:hover::after": {
-    content: '""',
-    position: "absolute",
-    width: "100%",
-    transform: "scaleX(1)",
-    height: "2px",
-    bottom: -2,
-    left: 0,
-    backgroundColor: colors.mor,
-    transformOrigin: "bottom right",
-    transition: "transform 0.9s ease-out",
+const paperInfo = [
+  {
+    img: img1,
+    text: "Ulaşım Uygulaması",
+    link: "http://www.elittur.com",
+    linkgit: "https://github.com/OmTun-Labs/transporter-website",
+    desc: "Ulaşım Araçlarının Kullanıcıya Hızlı ve Güvenilir Bir Şekilde Ulaşmasını Amaçladık",
   },
-  "&::after": {
-    content: '""',
-    position: "absolute",
-    width: "100%",
-    transform: "scaleX(0)",
-    height: "2px",
-    bottom: -2,
-    left: 0,
-    backgroundColor: colors.mor,
-    transformOrigin: "bottom right",
-    transition: "transform 0.5s ease-out",
+  {
+    img: img2,
+    text: "Proje",
+    link: "http://www.mounth.com",
+    linkgit: "https://github.com/OmTun-Labs/transporter-website",
+    desc: "Lojistik İşlemlerini İş Sahiplerinin Kesintisiz Doğru Bilgi İle Erişimini Sağladık",
   },
-}));
-
-const DropdownMenu = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "100%",
-  left: 0,
-  backgroundColor: darkColors.darkBlack,
-  color: "#F7F7F7",
-  minWidth: "200px",
-  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)",
-  zIndex: 1000,
-  display: "none",
-  flexDirection: "column",
-  padding: theme.spacing(2),
-  transition: "all 0.5s ease", // Yavaşlatma eklendi
-  "& a": {
-    color: "#F7F7F7",
-    padding: theme.spacing(1),
-    textDecoration: "none",
-    "&:hover": {
-      backgroundColor: colors.mor,
-    },
+  {
+    img: img3,
+    text: "Proje",
+    link: "http://www.web1.com",
+    linkgit: "https://github.com/OmTun-Labs/transporter-website",
+    desc: "Öğrencilerin Not Tutmaları İçin Kullanışlı ve Kolay Anlaşılabilir Not Uygulması Tasarladık",
   },
-}));
+];
 
-const KatalogLink = styled(StyledLink)(({ theme }) => ({
-  "&:hover": {
-    "& > .dropdown-menu": {
-      display: "flex",
-    },
-    "& > .arrow-icon": {
-      transform: "rotate(90deg)",
-    },
-  },
-}));
-
-const MainNav2 = () => {
-  const [hidden, setHidden] = useState(false);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-
-  const handleScroll = () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop && scrollTop > 48) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-    setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollTop]);
-
-  return (
-    <StyledAppBar
-      position="static"
+const OpenSource = () => (
+  <div
+    id="open-source"
+    style={{
+      minHeight: "100vh",
+      backgroundColor: darkColors.black,
+      color: colors.white,
+      padding: "2rem",
+      paddingLeft: "4rem",
+      paddingRight: "4rem",
+      position: "relative",
+      overflow: "hidden",
+    }}
+  >
+    <div
       style={{
-        backgroundColor: hidden ? "#F7F7F7" : darkColors.darkBlack,
-        color: hidden ? darkColors.darkBlack : "#F7F7F7",
-        transform: hidden ? "translateY(-100%)" : "translateY(0)",
+        width: "100%",
       }}
     >
-      <StyledToolbar>
-        <div
+      <h1
+        style={{
+          fontFamily: "Anton",
+          color: colors.platinum,
+          paddingLeft: "11rem",
+          textAlign: "start",
+          fontSize: "3rem",
+          marginTop: "9rem",
+        }}
+      >
+        Kaynak Projelerimiz
+      </h1>
+      <span
+        style={{
+          color: colors.black,
+          position: "absolute",
+          fontFamily: "Anton",
+          fontSize: "3rem",
+          top: "11rem",
+          left: "9rem",
+          zIndex: 1,
+        }}
+      >
+        Açık
+      </span>
+    </div>
+
+    <Grid
+      container
+      style={{
+        marginTop: "5rem",
+        paddingLeft: "4rem",
+        paddingRight: "4rem",
+      }}
+      spacing={2} // Changed to spacing={2} for 2 rem spacing
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Stick
+        stickyBg={bg}
+        style={{ left: "0rem", top: "10rem", width: "14.5rem", zIndex: 0 }}
+      />
+      <Stick
+        stickyBg={bg}
+        style={{
+          right: 2,
+          top: 0,
+          transform: "rotate(90deg)",
+        }}
+      />
+
+      {paperInfo.map((info, index) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3} // Changed to lg={3} for 4 items per row on large screens
+          key={index}
           style={{
-            marginLeft: "-20rem",
-            transition: "transform 2s ease-in-out",
+            display: "flex",
+            justifyContent: "center",
+            padding: "1rem",
           }}
         >
-          {hidden ? <Logo /> : <Logo />}
-        </div>
+          <BodyPaper
+            img={info.img}
+            text={info.text}
+            link={info.link}
+            linkgit={info.linkgit}
+            desc={info.desc}
+          />
+        </Grid>
+      ))}
+    </Grid>
+  </div>
+);
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <StyledLink to="/">
-            <Home /> Hakkımızda
-          </StyledLink>
-          <KatalogLink to="#">
-            <MenuBook /> Katalog <ArrowRight className="arrow-icon" />
-            <DropdownMenu className="dropdown-menu">
-              <StyledLink to="/projects">Projeler</StyledLink>
-              <StyledLink to="/open-source">Açık Kaynak Ürünler</StyledLink>
-            </DropdownMenu>
-          </KatalogLink>
-          <StyledLink to="/products">
-            <LocalMall /> Ürünler
-          </StyledLink>
-          <StyledLink to="/quote">
-            <MonetizationOn /> Teklif Alın
-          </StyledLink>
-        </Box>
-      </StyledToolbar>
-    </StyledAppBar>
-  );
-};
-
-export default MainNav2;
+export default OpenSource;

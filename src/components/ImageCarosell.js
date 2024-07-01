@@ -36,7 +36,7 @@ const ImageSlider = () => {
   }, [currentIndex]);
 
   return (
-    <div className="slider">
+    <div className="slider" style={{paddingBottom:"1rem"}}>
       {videos.map((video, index) => (
         <div
           key={index}
@@ -46,8 +46,8 @@ const ImageSlider = () => {
           <video
             id={`video-${index}`}
             src={video}
-            width="100%"
-            height="100%"
+            minWidth="90%"
+            minHeight="90%"
             muted
             autoPlay
             loop

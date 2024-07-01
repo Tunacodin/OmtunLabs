@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Toolbar, Box, Link, Icon } from "@mui/material";
+import { AppBar, Toolbar, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
   Home,
   MenuBook,
-  LocalMall,
+  Group,
   MonetizationOn,
   ArrowRight,
 } from "@mui/icons-material";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import colors from "../consts/colors";
 import Logo from "./Logo";
 import darkColors from "../consts/darkColors";
@@ -35,7 +36,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const StyledLink = styled(ScrollLink)(({ theme }) => ({
   fontSize: "1.2rem",
   fontFamily: "Poppins",
   color: "inherit",
@@ -44,6 +45,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: "0.5rem",
+  cursor: "pointer",
   "&:hover::after": {
     content: '""',
     position: "absolute",
@@ -88,6 +90,7 @@ const DropdownMenu = styled(Box)(({ theme }) => ({
     padding: theme.spacing(1),
     textDecoration: "none",
     transition: "transform 0.9s ease-out",
+    cursor: "pointer",
     "&:hover": {
       backgroundColor: colors.mor,
     },
@@ -105,13 +108,35 @@ const KatalogLink = styled(StyledLink)(({ theme }) => ({
   },
 }));
 
+const StyledButtonLink = styled(ScrollLink)(({ theme }) => ({
+  fontSize: "1.2rem",
+  fontFamily: "Poppins",
+  color: "inherit",
+  textDecoration: "none",
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  cursor: "pointer",
+  backgroundColor: colors.white,
+  color: darkColors.darkBlack,
+  padding: "0.5rem 1rem",
+  borderRadius: "5px",
+  "&:hover": {
+    backgroundColor: colors.mor,
+    color: colors.white,
+    transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-y",
+  },
+}));
+
 const MainNav2 = () => {
   const [hidden, setHidden] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop && scrollTop > 48) {
+    if (scrollTop > lastScrollTop && scrollTop > 200) {
+      // 48 yerine 200
       setHidden(true);
     } else {
       setHidden(false);
@@ -140,28 +165,37 @@ const MainNav2 = () => {
           style={{
             marginLeft: "-20rem",
             transition: "transform 2s ease-in-out",
+            cursor: "pointer",
           }}
+          onClick={() => scroll.scrollToTop()}
         >
-          {hidden ? <Logo /> : <Logo />}
+          <Logo />
         </div>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <StyledLink href="#">
+          <StyledLink to="hero" smooth={true} duration={500}>
+            <Home /> Anasayfa
+          </StyledLink>
+          <StyledLink to="about-us" smooth={true} duration={500}>
             <Home /> Hakkımızda
           </StyledLink>
-          <KatalogLink href="#">
+          <KatalogLink to="catalog" smooth={true} duration={500}>
             <MenuBook /> Katalog <ArrowRight className="arrow-icon" />
             <DropdownMenu className="dropdown-menu">
-              <Link href="#">Projeler</Link>
-              <Link href="#">Açık Kaynak Ürünler</Link>
+              <ScrollLink to="projects" smooth={true} duration={500}>
+                Projeler
+              </ScrollLink>
+              <ScrollLink to="open-source" smooth={true} duration={500}>
+                Açık Kaynak Ürünler
+              </ScrollLink>
             </DropdownMenu>
           </KatalogLink>
-          <StyledLink href="#">
-            <LocalMall /> Ürünler
+          <StyledLink to="team" smooth={true} duration={500}>
+            <Group /> Takım
           </StyledLink>
-          <StyledLink href="#">
+          <StyledButtonLink to="get-quote" smooth={true} duration={500}>
             <MonetizationOn /> Teklif Alın
-          </StyledLink>
+          </StyledButtonLink>
         </Box>
       </StyledToolbar>
     </StyledAppBar>

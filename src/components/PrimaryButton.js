@@ -13,7 +13,7 @@ const fillAnimation = keyframes`
   }
 `;
 
-const PrimaryButton = ({ text }) => {
+const PrimaryButton = ({ style,text }) => {
   return (
     <div
       style={{
@@ -30,6 +30,7 @@ const PrimaryButton = ({ text }) => {
         backgroundColor: colors.black,
         margin: "auto",
         fontFamily: "Poppins, sans-serif",
+        ...style,
       }}
     >
       <Button

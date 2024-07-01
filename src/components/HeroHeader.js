@@ -43,11 +43,12 @@ const HeroHeader = ({text}) => {
       <PrimaryButton text="KEŞFET" />
       <div
         style={{
-          height: "84vh", // Header boyutu %90 viewport yüksekliği
-          width: "75%",
-          background: "transparent",
+          height: "100vh", // Header boyutu %90 viewport yüksekliği
+          width: "100%",
+          background: "red",
           zIndex: 100,
           display: "flex",
+          margin: "auto",
           alignItems: "center",
           justifyContent: "center",
           boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
@@ -55,7 +56,6 @@ const HeroHeader = ({text}) => {
           position: "relative",
           overflow: "hidden",
           marginTop: "10rem",
-          borderRadius: "0 0 5rem 5rem",
         }}
       >
         <div
@@ -63,8 +63,13 @@ const HeroHeader = ({text}) => {
             position: "absolute",
             width: "100%",
             height: "100%",
+            left:0,
             alignItems: "center",
             overflow: "hidden",
+            margin: "auto",
+            justifyContent: "center",
+            alignItems: "center",
+            
           }}
         >
           <ImageCarosell />
