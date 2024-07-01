@@ -58,7 +58,7 @@ const HeroHeader = () => {
           position: "relative",
           overflow: "hidden",
           padding: 10,
-          marginTop: "6rem",
+          marginTop: "10rem",
         }}
       >
         <div
