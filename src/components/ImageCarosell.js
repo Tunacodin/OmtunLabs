@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import ımg2 from "../img/1.png";
-import ımg3 from "../img/2.png";
+
 import vid1 from "../img/hero1.mp4";
 import vid2 from "../img/hero2.mp4";
 

@@ -69,26 +69,7 @@ const HeroBody = () => {
         }}
       >
         <ConstSlider />
-        {showTypography && (
-          <Typography fontFamily="Arial">
-            <h1
-              style={{
-                color: colors.black,
-                textAlign: "center",
-                fontSize: "3rem",
-                animation: "fadeIn 0s ease-in", // Animasyon süresini 1 saniyeye ve geçiş tipini 'ease-in' yapalım
-                opacity: 1, // Opacity 1 olsun
-                position: "absolute",
-                bottom: "-10%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                zIndex: 1,
-              }}
-            >
-              Yenilikçi Yazılım Çözümleriyle Geleceği Şekillendiriyoruz
-            </h1>
-          </Typography>
-        )}
+      
       </div>
     </div>
   );
