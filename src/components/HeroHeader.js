@@ -14,7 +14,7 @@ import zIndex from "@mui/material/styles/zIndex";
 import { Button } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
 
-const HeroHeader = ({text}) => {
+const HeroHeader = ({ text }) => {
   const [headerHeight, setHeaderHeight] = useState(0);
   const headerRef = useRef(null);
 
@@ -34,28 +34,25 @@ const HeroHeader = ({text}) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "110vh",
-        marginTop: "-4rem",
+        height: "100vh",
         overflow: "hidden",
         position: "relative",
+        marginTop: "2rem",
+        boxShadow: "0px 3px 30px rgba(0, 0, 0, 1)",
+        borderRadius: "3rem",
+        zIndex: 999,
       }}
     >
       <PrimaryButton text="KEŞFET" />
       <div
         style={{
-          height: "100vh", // Header boyutu %90 viewport yüksekliği
+          height: "100vh", // Header boyutu %100 viewport yüksekliği
           width: "100%",
-          background: "red",
-          zIndex: 100,
           display: "flex",
-          margin: "auto",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
-          margin: "auto",
           position: "relative",
           overflow: "hidden",
-          marginTop: "10rem",
         }}
       >
         <div
@@ -63,13 +60,9 @@ const HeroHeader = ({text}) => {
             position: "absolute",
             width: "100%",
             height: "100%",
-            left:0,
+            left: 0,
             alignItems: "center",
-            overflow: "hidden",
-            margin: "auto",
             justifyContent: "center",
-            alignItems: "center",
-            
           }}
         >
           <ImageCarosell />

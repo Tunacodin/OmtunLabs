@@ -14,7 +14,7 @@ const HeroBodyEnd = ({style,stickyBg}) => {
       style={{
         height: "100vh",
         width: "100%",
-        marginTop: "-5rem",
+       
 backgroundImage: `url(${bg})`,
         
       }}
@@ -30,15 +30,6 @@ backgroundImage: `url(${bg})`,
         
         }}
       />
-          <h1 style={{
-              fontFamily:"Poppins",
-              textAlign: "center",
-              fontSize: "3rem",
-        padding: "4rem",
-              
-
-          }}>
-          </h1>
           <SubWebPages/>
     </div>
   );

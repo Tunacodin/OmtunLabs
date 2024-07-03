@@ -11,6 +11,7 @@ import bg from "../img/noktadesen.png";
 import "../App.css";
 import noktadesen from "../img/noktadesen.png";
 import Stick from "./Stick";
+import zIndex from "@mui/material/styles/zIndex";
 
 const paperInfo = [
   {
@@ -34,14 +35,14 @@ const paperInfo = [
     linkgit: "https://github.com/OmTun-Labs/transporter-website",
     desc: "Öğrencilerin Not Tutmaları İçin Kullanışlı ve Kolay Anlaşılabilir Not Uygulması Tasarladık",
   },
-
-
 ];
 
-const  Customer  = () => (
+const Customer = () => (
   <div
+    id="open-source"
     style={{
-      minHeight: "100vh",
+      height: "90vh",
+
       backgroundColor: darkColors.black,
       color: colors.white,
       padding: "2rem",
@@ -56,60 +57,50 @@ const  Customer  = () => (
         width: "100%",
       }}
     >
-      <h1
+   
+      <span
         style={{
+          color: colors.black,
+          position: "absolute",
           fontFamily: "Anton",
-          color: colors.platinum,
-          paddingLeft: "5rem",
-          textAlign: "start",
           fontSize: "3rem",
-          marginTop: "9rem",
+          top: "11rem",
+          left: "9rem",
+          zIndex: 1,
         }}
       >
-        Müşteri Ürünleri
-      </h1>
-    </div>
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "15%",
-        backgroundImage: `url(${noktadesen})`,
-        display: "flex",
-        alignItems: "center",
-        overflow: "hidden",
-        whiteSpace: "nowrap",
-      }}
-    >
-      <div style={{ width: "63%", margin: "auto" }} className="scrolling-text">
-        <h1>
-          TASARIM YENİLİKÇİ ÖZELLEŞTİRİLEBİLİR KULLANICI DOSTU İNOVATİF TASARIM
-          YENİLİKÇİ ÖZELLEŞTİRİLEBİLİR KULLANICI DOSTU İNOVATİF TASARIM
-          YENİLİKÇİ ÖZELLEŞTİRİLEBİLİR KULLANICI DOSTU İNOVATİF
-        </h1>
-      </div>
+        Ürünler
+      </span>
     </div>
 
     <Grid
-      container
       style={{
         marginTop: "10rem",
-        paddingLeft: "4rem",
-        paddingRight: "4rem",
+        padding: "5rem",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
       }}
       spacing={2} // Changed to spacing={2} for 2 rem spacing
       alignItems="center"
       justifyContent="center"
     >
-      <Stick stickyBg={bg} style={{ left: "15%", bottom: "20%",width: "17.5rem",height: "20.5rem", transform: "rotate(90deg)" }} />
+      <Stick
+        stickyBg={bg}
+        style={{ left: "8rem", top: "5rem", width: "15.5rem",height: "15.5rem", zIndex: 0 }}
+      />
       <Stick
         stickyBg={bg}
         style={{
-          right: "20rem",
-          top: 0,
-          transform: "rotate(90deg)",
+          right: "10rem",
+          top: "10rem",
+          transform: "rotate(0deg)",
+          width: "5.5rem",
+          height: "5.5rem",
         }}
       />
 
@@ -125,6 +116,8 @@ const  Customer  = () => (
             display: "flex",
             justifyContent: "center",
             padding: "1rem",
+            maxWidth: "30%",
+            marginBottom: "30rem",
           }}
         >
           <BodyPaper

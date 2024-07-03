@@ -5,10 +5,11 @@ import ArrowOutward from "@mui/icons-material/ArrowOutward";
 import RateDiv from "./Rating";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
+import "../App.css"
 
 const rateValues = [4.2, 4.5, 4.9, 5.0];
 
-const BodyPaper = ({ img, text, link, linkgit, desc }) => {
+const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
   const [style, setStyle] = useState({});
   const [isHovered, setIsHovered] = useState(false);
 
@@ -41,12 +42,12 @@ const BodyPaper = ({ img, text, link, linkgit, desc }) => {
   return (
     <Paper
       elevation={3}
+
       style={{
         fontFamily: "Poppins",
         height: "50vh", // Fixed height for consistent appearance
-        width: "100%", // Full width within its container
+        margin: "1rem",
         color: darkColors.black,
-
         display: "flex",
         flexDirection: "column",
         position: "relative",
@@ -84,7 +85,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc }) => {
           right: 0,
           padding: "5px 10px",
           backgroundColor: "#B052C0",
-          minWidth: "25%",
+          minWidth: "45%",
           height: "5%",
           display: "flex",
           alignItems: "center",
@@ -100,7 +101,6 @@ const BodyPaper = ({ img, text, link, linkgit, desc }) => {
             textAlign: "start",
             fontWeight: 300,
             margin: 0, // H3 içeriğinin kenar boşluğunu sıfırla
-            
           }}
         >
           {text}
@@ -112,7 +112,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc }) => {
           width: "100%",
           height: "10%",
           display: "flex",
-          justifyContent: "space-evenly",
+          justifyContent: showSourceCode ? "space-evenly" : "center",
           alignItems: "center",
           zIndex: 1,
           position: "absolute",
@@ -123,7 +123,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc }) => {
       >
         <Button
           style={{
-            width: "45%",
+            width: showSourceCode ? "45%" : "90%",
             height: "60%",
             opacity: 0.8,
             fontSize: ".8rem",
@@ -137,39 +137,41 @@ const BodyPaper = ({ img, text, link, linkgit, desc }) => {
           Siteyi Göster
         </Button>
 
-        <div
-          style={{
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderColor: colors.mor,
-            width: "50%",
-            height: "70%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "row",
-            borderRadius: "1rem",
-            gap: "3rem",
-          }}
-        >
-          <IconButton
-            aria-label="fingerprint"
-            color="secondary"
-            style={{ width: "40px", height: "40px" }}
-            href={linkgit}
-          >
-            <Fingerprint />
-          </IconButton>
+        {showSourceCode && (
           <div
             style={{
-              fontSize: "1rem",
-              marginLeft: "-2rem",
-              fontFamily: "Poppins",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderColor: colors.mor,
+              width: "50%",
+              height: "70%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              borderRadius: "1rem",
+              gap: "3rem",
             }}
           >
-            Kaynak Kod
+            <IconButton
+              aria-label="fingerprint"
+              color="secondary"
+              style={{ width: "40px", height: "40px" }}
+              href={linkgit}
+            >
+              <Fingerprint />
+            </IconButton>
+            <div
+              style={{
+                fontSize: "1rem",
+                marginLeft: "-2rem",
+                fontFamily: "Poppins",
+              }}
+            >
+              Kaynak Kod
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div

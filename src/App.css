@@ -366,3 +366,21 @@
 .indicator.active {
   background-color: #4929e7;
 }
+/* CSS file or in a styled component */
+@media (max-width: 1200px) {
+  .paper {
+    flex: 1 1 calc(33.333% - 2rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .paper {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .paper {
+    flex: 1 1 calc(100% - 2rem);
+  }
+}

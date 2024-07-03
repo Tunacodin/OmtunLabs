@@ -4,6 +4,7 @@ import ConstSlider from "./ConstSlider";
 import { Typography } from "@mui/material";
 import darkColors from "../consts/darkColors";
 import bg from "../img/noktadesenbig.png";
+import zIndex from "@mui/material/styles/zIndex";
 
 const HeroBody = () => {
   const [visible, setVisible] = useState(false);
@@ -47,7 +48,11 @@ const HeroBody = () => {
         width: "100%",
         position: "relative",
         backgroundImage: `url(${bg})`,
-        overflow: "hidden",
+        marginTop: "-4rem",
+        paddingTop: "4rem",
+        borderTopRadius: "5rem",
+        zIndex: 500,
+        
       }}
     >
  

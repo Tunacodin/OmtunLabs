@@ -41,7 +41,8 @@ const OpenSource = () => (
   <div
     id="open-source"
     style={{
-      minHeight: "100vh",
+      height: "90vh",
+
       backgroundColor: darkColors.black,
       color: colors.white,
       padding: "2rem",
@@ -84,11 +85,16 @@ const OpenSource = () => (
     </div>
 
     <Grid
-      container
       style={{
         marginTop: "5rem",
-        paddingLeft: "4rem",
-        paddingRight: "4rem",
+        padding: "5rem",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
       }}
       spacing={2} // Changed to spacing={2} for 2 rem spacing
       alignItems="center"
@@ -119,6 +125,8 @@ const OpenSource = () => (
             display: "flex",
             justifyContent: "center",
             padding: "1rem",
+            maxWidth: "30%",
+            marginBottom: "30rem",
           }}
         >
           <BodyPaper

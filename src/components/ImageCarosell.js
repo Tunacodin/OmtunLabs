@@ -36,7 +36,7 @@ const ImageSlider = () => {
   }, [currentIndex]);
 
   return (
-    <div className="slider" style={{paddingBottom:"1rem"}}>
+    <div className="slider">
       {videos.map((video, index) => (
         <div
           key={index}
@@ -46,8 +46,7 @@ const ImageSlider = () => {
           <video
             id={`video-${index}`}
             src={video}
-            minWidth="90%"
-            minHeight="90%"
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
             muted
             autoPlay
             loop
@@ -56,12 +55,7 @@ const ImageSlider = () => {
           />
         </div>
       ))}
-      <button className="prev" onClick={prevSlide}>
-        &#10094;
-      </button>
-      <button className="next" onClick={nextSlide}>
-        &#10095;
-      </button>
+     
     </div>
   );
 };

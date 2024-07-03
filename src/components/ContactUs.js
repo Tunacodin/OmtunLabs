@@ -22,7 +22,7 @@ const ContactUs = () => {
         item
         md={6}
         component={Paper}
-        elevation={6}
+        
         square
       >
         <div
