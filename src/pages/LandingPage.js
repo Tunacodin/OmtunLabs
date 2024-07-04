@@ -17,7 +17,6 @@ const LandingPage = () => {
       <HeroHeader id="hero" />
       <HeroBody id="hero-body" />
       <WhatWeDo id="what-we-do" />
-      <ProductContext id="hero-body-end" />
       <Customer id="customer" />
       <OpenSource id="open-source" />
   
