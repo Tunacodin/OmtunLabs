@@ -72,7 +72,7 @@ const WhatWeDo = ({ style }) => {
         ]}
       />
       <Jobs
-        
+        alignItems={"flex-end"}
         btncolor={colors.white}
         bg={colors.yellow}
         h1={"Mobil Teknolojileri"}

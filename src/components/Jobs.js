@@ -9,7 +9,7 @@ import img2 from "../img/web2.png";
 import img3 from "../img/web4.png";
 
 
-const Jobs = ({ images, style, h1, p, bg, color, btncolor, features,opacity }) => {
+const Jobs = ({ images, style, h1, p, bg, color, btncolor, features,opacity,alignItems }) => {
   const [hover, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
   const detailsRef = useRef(null);
@@ -62,22 +62,18 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features,opacity }) =
           overflow: "hidden",
         }}
       >
-        <Stick
-          style={{
-            position: "absolute",
-            top: "0",
-            left: "0",
-            width: "42%",
-            height: "20%",
-            marginTop: ".7rem",
-            backgroundColor: "white",
-          }}
-        />
+     
+
+
         <div
           style={{
             height: "100%",
             padding: "2rem",
             zIndex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: alignItems,
+            justifyContent: "center",
           }}
         >
           <h1
@@ -106,7 +102,7 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features,opacity }) =
           <button
             style={{
               color: hover ? color : colors.black,
-              
+              width:"7rem",
               borderRadius: "1rem",
               padding: ".6rem",
               border: "none",
@@ -127,6 +123,8 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features,opacity }) =
             Daha Fazla
           </button>
         </div>
+
+        
       </div>
 
       {/* Sağ taraftaki carousel */}

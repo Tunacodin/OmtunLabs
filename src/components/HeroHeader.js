@@ -33,7 +33,6 @@ const HeroHeader = ({ text }) => {
         position: "relative",
         marginTop: "2rem",
         boxShadow: "0px 3px 30px rgba(0, 0, 0, 1)",
-        borderRadius: "3rem",
         zIndex: 999,
         
       }}
