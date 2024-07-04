@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
-
+import { Box, Button } from "@mui/material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import vid1 from "../img/hero1.mp4";
 import vid2 from "../img/hero2.mp4";
 
 const videos = [vid1, vid2];
 
-const ImageSlider = () => {
+const VideoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const nextVideo = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  };
+
+  const prevVideo = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + videos.length) % videos.length
+    );
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 5500); // Adjust the interval to your desired video length
+    const interval = setInterval(nextVideo, 5500); // Change video every 5.5 seconds
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
-
-  const nextSlide = () => {
-    setCurrentIndex((currentIndex + 1) % videos.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((currentIndex - 1 + videos.length) % videos.length);
-  };
 
   useEffect(() => {
     const videoElement = document.getElementById(`video-${currentIndex}`);
@@ -35,12 +35,25 @@ const ImageSlider = () => {
   }, [currentIndex]);
 
   return (
-    <div className="slider">
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       {videos.map((video, index) => (
-        <div
+        <Box
           key={index}
-          className={`slide ${index === currentIndex ? "active" : ""}`}
-          style={{ display: index === currentIndex ? "block" : "none" }}
+          sx={{
+            display: index === currentIndex ? "block" : "none",
+            width: "100%",
+            height: "100%",
+          }}
         >
           <video
             id={`video-${index}`}
@@ -50,13 +63,35 @@ const ImageSlider = () => {
             autoPlay
             loop
             playsInline
-            onEnded={nextSlide}
           />
-        </div>
+        </Box>
       ))}
-     
-    </div>
+      <Button
+        onClick={prevVideo}
+        sx={{
+          position: "absolute",
+          left: 10,
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 1,
+        }}
+      >
+       
+      </Button>
+      <Button
+        onClick={nextVideo}
+        sx={{
+          position: "absolute",
+          right: 10,
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 1,
+        }}
+      >
+        
+      </Button>
+    </Box>
   );
 };
 
-export default ImageSlider;
+export default VideoCarousel;

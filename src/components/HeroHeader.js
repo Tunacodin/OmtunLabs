@@ -1,18 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-import Navbar from "./Navbar";
-import colors from "../consts/colors";
-import DividerNav from "./DividerNav";
-import Logo from "./Logo";
+
 import ImageCarosell from "./ImageCarosell";
-import MainNav from "./MainNav";
+
 import darkColors from "../consts/darkColors";
-import MainNav2 from "./MainNav2";
-import Stick from "./Stick";
-import bg from "../img/noktadesen.png";
-import { BorderColor, Padding } from "@mui/icons-material";
-import zIndex from "@mui/material/styles/zIndex";
-import { Button } from "@mui/material";
+
 import PrimaryButton from "./PrimaryButton";
+
 
 const HeroHeader = ({ text }) => {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -27,6 +20,7 @@ const HeroHeader = ({ text }) => {
 
   return (
     <div
+  
       ref={headerRef}
       style={{
         background: `linear-gradient(to top, rgba(255, 255, 255, 0) 15%, ${darkColors.black} 100%)`,
@@ -41,6 +35,7 @@ const HeroHeader = ({ text }) => {
         boxShadow: "0px 3px 30px rgba(0, 0, 0, 1)",
         borderRadius: "3rem",
         zIndex: 999,
+        
       }}
     >
       <PrimaryButton text="KEŞFET" />

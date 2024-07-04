@@ -10,7 +10,7 @@ const Carousel = ({ images, style }) => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change slide every 3 seconds
+    }, 6000); // Change slide every 6 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [images.length]);
@@ -27,6 +27,10 @@ const Carousel = ({ images, style }) => {
     );
   };
 
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <Box
       position="relative"
@@ -37,6 +41,7 @@ const Carousel = ({ images, style }) => {
     >
       <IconButton
         onClick={handlePrevious}
+        size="small"
         sx={{
           position: "absolute",
           top: "50%",
@@ -45,6 +50,7 @@ const Carousel = ({ images, style }) => {
           zIndex: 1,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "white",
+          display: "none",
         }}
       >
         <ArrowBackIos />
@@ -57,10 +63,12 @@ const Carousel = ({ images, style }) => {
           width: "100%",
           height: "100%",
           objectFit: "cover", // Ensures the image covers the entire area while maintaining aspect ratio
+          transition: "transform 1s ease-in-out", // Slow down transition
         }}
       />
       <IconButton
         onClick={handleNext}
+        size="small"
         sx={{
           position: "absolute",
           top: "50%",
@@ -69,6 +77,7 @@ const Carousel = ({ images, style }) => {
           zIndex: 1,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "white",
+          display: "none",
         }}
       >
         <ArrowForwardIos />
@@ -84,12 +93,12 @@ const Carousel = ({ images, style }) => {
         {images.map((_, index) => (
           <Box
             key={index}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => handleDotClick(index)}
             sx={{
               height: "10px",
               width: "10px",
               backgroundColor:
-                index === currentIndex ? "white" : "rgba(255, 255, 255, 0.5)",
+                index === currentIndex ? "rgba(25, 25, 255, 0.5)" : "gray",
               borderRadius: "50%",
               cursor: "pointer",
               margin: "0 5px",
