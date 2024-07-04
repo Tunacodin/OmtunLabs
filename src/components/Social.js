@@ -7,7 +7,7 @@ import {
   LinkedIn,
   WhatsApp,
 } from "@mui/icons-material";
-import colors from "../consts/colors"; // Renkleriniz için yol ayarlaması yapın
+import colors from "../consts/colors"; // Ensure correct path to your colors file
 import darkColors from "../consts/darkColors";
 
 const Social = () => {
@@ -35,11 +35,11 @@ const Social = () => {
         <IconButton
           size="large"
           sx={{
-            color: colors.mor,
+            color: colors.white, // Normal color (white)
             transition: "color 1s, background 1s",
             "&:hover": {
-              background: `linear-gradient(to bottom right, ${colors.platinum}, ${colors.mor})`,
-              color: colors.white,
+              background: colors.white, // Hover background (white)
+              color: colors.mor, // Hover color (colors.mor)
             },
           }}
         >

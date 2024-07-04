@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, useMediaQuery } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 
 const Carousel = ({ images, style }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 6000); // Change slide every 6 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [images.length]);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [currentIndex, images.length]);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -35,9 +35,14 @@ const Carousel = ({ images, style }) => {
     <Box
       position="relative"
       width="100%"
-      height="100%"
-      margin="auto"
-      style={{ ...style }}
+      height={isMobile ? "150px" : "100%"}
+      sx={{
+        ...style,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        overflow: "hidden",
+      }}
     >
       <IconButton
         onClick={handlePrevious}
@@ -50,7 +55,6 @@ const Carousel = ({ images, style }) => {
           zIndex: 1,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "white",
-          display: "none",
         }}
       >
         <ArrowBackIos />
@@ -62,8 +66,8 @@ const Carousel = ({ images, style }) => {
         sx={{
           width: "100%",
           height: "100%",
-          objectFit: "cover", // Ensures the image covers the entire area while maintaining aspect ratio
-          transition: "transform 1s ease-in-out", // Slow down transition
+          objectFit: "cover",
+          transition: "transform 1s ease-in-out",
         }}
       />
       <IconButton
@@ -77,7 +81,6 @@ const Carousel = ({ images, style }) => {
           zIndex: 1,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "white",
-          display: "none",
         }}
       >
         <ArrowForwardIos />
@@ -85,10 +88,10 @@ const Carousel = ({ images, style }) => {
       <Box
         display="flex"
         justifyContent="center"
-        mt={2}
         position="absolute"
         bottom="10px"
         width="100%"
+        sx={{ mt: 2 }}
       >
         {images.map((_, index) => (
           <Box
@@ -101,7 +104,7 @@ const Carousel = ({ images, style }) => {
                 index === currentIndex ? "rgba(25, 25, 255, 0.5)" : "gray",
               borderRadius: "50%",
               cursor: "pointer",
-              margin: "0 5px",
+              mx: "5px",
             }}
           ></Box>
         ))}

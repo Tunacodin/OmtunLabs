@@ -18,8 +18,6 @@ const LandingPage = () => {
       <HeroBody id="hero-body" />
       <WhatWeDo id="what-we-do" />
       <Customer id="customer" />
-      <OpenSource id="open-source" />
-  
       <ContactUs id="contact-us" />
       <Footer />
     </div>

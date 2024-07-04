@@ -28,7 +28,7 @@ const StyledButtonLink = styled(ScrollLink)(({ theme, btncolor }) => ({
   transition: "background-size 0.6s ease-in-out",
 
   ":hover": {
-    color:colors.black,
+    color: colors.black,
     backgroundSize: "100% 100%",
   },
 }));

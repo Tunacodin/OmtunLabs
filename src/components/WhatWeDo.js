@@ -1,66 +1,49 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import Jobs from "./Jobs";
 import colors from "../consts/colors";
-import darkColors from "../consts/darkColors";
 
 const WhatWeDo = ({ style }) => {
-    const [hover, setHover] = useState(false);
-    const [clicked, setClicked] = useState(false);
-    const detailsRef = useRef(null);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery((theme) =>
+    theme.breakpoints.between("sm", "md")
+  );
 
-    
-    const handleMouseEnter = () => {
-      setHover(true);
-    };
+  const jobsContainerHeight = isMobile ? "250px" : "300px"; // Increased height
 
-    const handleMouseLeave = () => {
-      if (!clicked) {
-        setHover(false);
-      }
-    };
-
-    const handleClick = () => {
-      setClicked(!clicked);
-    };
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         width: "100%",
-        height: "110vh",
+        minHeight: "110vh",
         backgroundColor: colors.black,
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         flexDirection: "column",
-        gap: "2rem",
-        position: "relative",
-        paddingTop: "7rem",
-        paddingBottom: "5rem",
+        alignItems: "center",
+        gap: 4,
+        pt: 9,
+        pb: 6,
         ...style,
       }}
     >
-      <h1
-        style={{
-          fontSize: "3rem",
+      <Typography
+        variant="h3"
+        sx={{
           fontFamily: "Anton",
           color: colors.white,
-          textAlign: "start",
-          position: "absolute",
-          top: "1.5rem",
-          left: "4rem",
+          textAlign: "center",
         }}
       >
-        OmTun Ne İş Yapıyor?
-      </h1>
+        Ne Yapıyoruz
+      </Typography>
 
       <Jobs
-        color={"white"}
+        alignItems="flex-end"
+        color="white"
         btncolor={colors.white}
         bg={colors.red}
-        h1={"Web Teknolojileri"}
-        p={
-          "Yüksek kaliteli web uygulamalarımız, işletmenizin kullanıcı dostu olmasını ve müşterilerinize kolay erişim sağlamasını garanti eder."
-        }
+        h1="Web Teknolojileri"
+        p="Yüksek kaliteli web uygulamalarımız, işletmenizin kullanıcı dostu olmasını ve müşterilerinize kolay erişim sağlamasını garanti eder."
         features={[
           "SEO Optimizasyonu",
           "Arka Uç Desteği",
@@ -70,15 +53,19 @@ const WhatWeDo = ({ style }) => {
           "Tarayıcılar Arası Uyumluluk",
           "Ölçeklenebilirlik",
         ]}
+        style={{
+          flexDirection: isMobile ? "column" : "row",
+          height: jobsContainerHeight,
+          mb: isMobile ? 4 : 0, // Add margin bottom for spacing in mobile view
+        }}
       />
+
       <Jobs
-        alignItems={"flex-end"}
+        alignItems="flex-end"
         btncolor={colors.white}
         bg={colors.yellow}
-        h1={"Mobil Teknolojileri"}
-        p={
-          "Mobil uygulamalarımız, işletmenizin kullanıcı dostu olmasını ve müşterilerinize kolay erişim sağlamasını temin eder."
-        }
+        h1="Mobil Teknolojileri"
+        p="Mobil uygulamalarımız, işletmenizin kullanıcı dostu olmasını ve müşterilerinize kolay erişim sağlamasını temin eder."
         features={[
           "Mobil Öncelikli Tasarım",
           "Push bildirimleri",
@@ -86,23 +73,31 @@ const WhatWeDo = ({ style }) => {
           "Güvenlik özellikleri",
           "API'lerle entegrasyon",
         ]}
-        style={{ flexDirection: "row-reverse" }}
+        style={{
+          flexDirection: isMobile ? "column" : "row",
+          height: jobsContainerHeight,
+          mb: isMobile ? 4 : 0, // Add margin bottom for spacing in mobile view
+        }}
       />
+
       <Jobs
+        alignItems="flex-end"
         btncolor={colors.white}
         bg={colors.green}
-        h1={"Masaüstü Uygulamaları"}
-        p={
-          "Üstün masaüstü uygulamalarımız, işletmenizin kullanıcı dostu olmasını ve kullanıcılarınıza kolay erişim sağlamasını sağlar."
-        }
+        h1="Masaüstü Uygulamaları"
+        p="Üstün masaüstü uygulamalarımız, işletmenizin kullanıcı dostu olmasını ve kullanıcılarınıza kolay erişim sağlamasını sağlar."
         features={[
           "Çoklu Pencere Desteği",
           "Yüksek performans",
           "Veri güvenliği",
           "Masaüstü Özellikleriyle Entegrasyon",
         ]}
+        style={{
+          flexDirection: isMobile ? "column" : "row",
+          height: jobsContainerHeight,
+        }}
       />
-    </div>
+    </Box>
   );
 };
 

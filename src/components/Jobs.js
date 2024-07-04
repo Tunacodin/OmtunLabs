@@ -1,204 +1,187 @@
 import React, { useState, useRef } from "react";
+import { Box, Typography, Button, useMediaQuery, Stack } from "@mui/material";
 import Carousel from "./Carousel";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
-import Stick from "./Stick";
 import TeklifAl from "./TeklifAl";
 import img1 from "../img/web1.png";
 import img2 from "../img/web2.png";
 import img3 from "../img/web4.png";
 
-
-const Jobs = ({ images, style, h1, p, bg, color, btncolor, features,opacity,alignItems }) => {
+const Jobs = ({
+  images = [img1, img2, img3],
+  style,
+  h1,
+  p,
+  bg,
+  color,
+  btncolor,
+  features,
+}) => {
   const [hover, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
   const detailsRef = useRef(null);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery((theme) =>
+    theme.breakpoints.between("sm", "md")
+  );
 
-  // Placeholder images (replace with actual image props if necessary)
-  images = [img1, img2, img3];
+  const handleMouseEnter = () => setHover(true);
+  const handleMouseLeave = () => !clicked && setHover(false);
+  const handleClick = () => setClicked(!clicked);
 
-  const handleMouseEnter = () => {
-    setHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (!clicked) {
-      setHover(false);
-    }
-  };
-
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
+  const containerHeight = isMobile ? "200px" : "250px";
 
   return (
-    <div
-      style={{
-        width: "60%",
-        height: "30%",
+    <Box
+      sx={{
+        width: isMobile ? "90%" : isTablet ? "80%" : "60%",
+        height: containerHeight,
         display: "flex",
+        flexDirection: isMobile ? "column" : "row",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "row",
-        boxShadow: "0px 3px 30px rgba(0, 0, 0, 1)",
-        borderRadius: "1rem",
+        boxShadow: 3,
+        borderRadius: 1,
         position: "relative",
         overflow: "hidden",
         ...style,
       }}
     >
-      {/* Sol taraftaki içerik */}
-      <div // Kapsayıcı Div - Now position relative
+      <Box
         ref={detailsRef}
-        style={{
-          width: "100%",
-          height: "100%",
+        sx={{
+          width: isMobile ? "100%" : "60%",
+          height: containerHeight,
           backgroundColor: darkColors.black,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection: "row",
+          flexDirection: "column",
           position: "relative",
           overflow: "hidden",
+          p: 2,
         }}
       >
-     
-
-
-        <div
-          style={{
-            height: "100%",
-            padding: "2rem",
-            zIndex: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: alignItems,
-            justifyContent: "center",
+        <Typography
+          variant="h2"
+          sx={{
+            fontFamily: "Anton",
+            color: colors.white,
+            pb: 2,
+            fontSize: isMobile ? "1.5rem" : "2rem",
           }}
         >
-          <h1
-            style={{
-              fontSize: "2rem",
-              fontFamily: "Anton",
-              color: colors.black,
-              textAlign: "start",
-              paddingBottom: "1.5rem",
-            }}
-          >
-            {h1}
-          </h1>
-          <p
-            style={{
-              width: "50%",
-              fontFamily: "Poppins",
-              fontWeight: "500",
-              color: colors.white,
-              textAlign: "start",
-              fontSize: "1.2rem",
-            }}
-          >
-            {p}
-          </p>
-          <button
-            style={{
-              color: hover ? color : colors.black,
-              width:"7rem",
-              borderRadius: "1rem",
-              padding: ".6rem",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "Poppins",
-              fontWeight: "500",
-              fontSize: "1rem",
-              boxShadow:
-                "4px 4px 20px rgba(10, 110, 110, 0.5), -4px -4px 20px rgba(190, 120, 210, .5)",
-              backgroundColor: hover ? bg : colors.white,
-              backgroundColor: clicked ? bg : colors.white,
-              transition: "background-color 0.5s ease-in-out",
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
-          >
-            Daha Fazla
-          </button>
-        </div>
+          {h1}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            width: "100%",
+            fontFamily: "Poppins",
+            fontWeight: 500,
+            color: colors.white,
+            fontSize: isMobile ? "0.875rem" : "1rem",
+          }}
+        >
+          {p}
+        </Typography>
+        <Button
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+          sx={{
+            color: hover ? color : colors.black,
+            width: "6rem",
+            borderRadius: 1,
+            padding: ".4rem",
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "Poppins",
+            fontWeight: 500,
+            fontSize: "0.75rem",
+            boxShadow: 4,
+            backgroundColor: hover ? bg : colors.white,
+            backgroundColor: clicked ? bg : colors.white,
+            transition: "background-color 0.5s ease-in-out",
+            mt: 2,
+          }}
+        >
+          Daha Fazla
+        </Button>
+      </Box>
 
-        
-      </div>
-
-      {/* Sağ taraftaki carousel */}
-      <div style={{ width: "40%", height: "100%", }}>
+      <Box
+        sx={{
+          width: isMobile ? "100%" : "40%",
+          height: containerHeight,
+          mt: isMobile ? 2 : 0,
+        }}
+      >
         <Carousel
-          
           images={images}
-          style={{ height: "100%", overflow: "hidden", borderRadius: 10,opacity: opacity}}
+          style={{ height: "100%", overflow: "hidden", borderRadius: 1 }}
         />
-      </div>
+      </Box>
 
-      <div
-        style={{
+      <Box
+        sx={{
           position: "absolute",
           top: 0,
-          right:
-            hover || clicked
-              ? -16
-              : `-${detailsRef.current?.offsetWidth || 0}px`,
-          width: "45%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.8)", // Arkaplan rengini biraz daha şeffaf yaptım
+          right: hover || clicked ? 0 : `-${detailsRef.current?.offsetWidth}px`,
+          width: isMobile ? "100%" : "45%",
+          height: containerHeight,
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
           color: "white",
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "center", // Butonu alta hizalamak için
-          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "space-between",
           transition: "right 0.7s ease-in-out, opacity 0.8s ease-in-out",
           opacity: hover || clicked ? 1 : 0,
           zIndex: 2,
-          borderRadius: "0 1rem 1rem 0", // Sağ alt ve sağ üst köşelere yuvarlatma ekledim
+          borderRadius: isMobile ? "0" : "0 1rem 1rem 0",
+          p: 2,
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {" "}
-          {/* İki sütun için flexbox */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            overflowY: "auto",
+            maxHeight: isMobile ? "70%" : "80%",
+          }}
+        >
           <ul
             style={{
               listStyleType: "disc",
               paddingLeft: "1.5rem",
-              marginRight: "2rem",
               fontFamily: "Poppins",
+              fontSize: isMobile ? "0.75rem" : "1rem",
             }}
           >
-            {" "}
-            {/* Sol sütun */}
-            {features
-              .slice(0, Math.ceil(features.length / 2))
-              .map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
+            {features.map((feature, index) => (
+              <li key={index} style={{ marginBottom: "0.5rem" }}>
+                {feature}
+              </li>
+            ))}
           </ul>
-          <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem" }}>
-            {" "}
-            {/* Sağ sütun */}
-            {features
-              .slice(Math.ceil(features.length / 2))
-              .map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-          </ul>
-        </div>
+        </Box>
 
-        <div
-          style={{
+        <Stack
+          sx={{
             alignSelf: "flex-end",
-            marginRight: "1rem",
-            marginBottom: "1rem",
+            mr: 1,
+            mb: 1,
+            width: "100%",
           }}
+          direction={isMobile ? "row" : "column"}
+          justifyContent="flex-end"
         >
           <TeklifAl btncolor={btncolor} />
-        </div>
-      </div>
-    </div>
+        </Stack>
+      </Box>
+    </Box>
   );
 };
 
