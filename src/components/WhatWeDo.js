@@ -23,6 +23,7 @@ const WhatWeDo = ({ style }) => {
         gap: 4,
         pt: 9,
         pb: 6,
+        
         ...style,
       }}
     >

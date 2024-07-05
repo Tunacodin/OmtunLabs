@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, IconButton } from "@mui/material";
+import { Box, Link, IconButton, useMediaQuery } from "@mui/material";
 import {
   Facebook,
   Twitter,
@@ -11,6 +11,12 @@ import colors from "../consts/colors"; // Ensure correct path to your colors fil
 import darkColors from "../consts/darkColors";
 
 const Social = () => {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  if (isMobile) {
+    return null; // Return null to hide the component on mobile screens
+  }
+
   return (
     <Box
       sx={{

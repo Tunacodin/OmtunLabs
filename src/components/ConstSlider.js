@@ -1,22 +1,44 @@
 import React, { useState, useEffect } from "react";
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/system";
 import colors from "../consts/colors";
 import img1 from "../img/web1.png";
-import img2 from "../img/doğa.jpg";
+import img2 from "../img/web1.png";
 import img3 from "../img/web2.png";
 import img4 from "../img/web4.png";
 import img5 from "../img/web5.png";
 
+const StyledBox = styled(Box)(({ theme, visible, delay, order }) => ({
+  width: "40%",
+  height: "60%",
+  position: "absolute",
+  backgroundColor: colors.black,
+  borderRadius: 20,
+  boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
+  overflow: "hidden",
+  transition: `transform 3s ease-in-out ${delay}s, opacity 3s ease-in-out ${delay}s`,
+  transform: visible ? "translateY(0)" : "translateY(100%)",
+  opacity: visible ? 1 : 0,
+  zIndex: 100 - order,
+  [theme.breakpoints.down("md")]: {
+    width: "50%",
+    height: "50%",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "80%",
+    height: "40%",
+    transition: `opacity 2s ease-in-out ${delay}s`,
+    transform: "none",
+    opacity: visible ? 1 : 0,
+  },
+}));
+
 const ConstSlider = () => {
   const [visible, setVisible] = useState(false);
-
-  // Animation variables
-  const animationSpeed = "3s"; // Speed of the transition
-  const baseTransitionDelay = 0.5; // Base delay for each div
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
-        // Adjust the value as needed
         setVisible(true);
       } else {
         setVisible(false);
@@ -30,37 +52,25 @@ const ConstSlider = () => {
     };
   }, []);
 
-  const commonStyles = {
-    width: "40%",
-    height: "60%",
-    position: "absolute",
-    backgroundColor: colors.black,
-    borderRadius: 20,
-    boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
-    overflow: "hidden",
-    transition: `transform ${animationSpeed} ease-in-out, opacity ${animationSpeed} ease-in-out`, // Smooth transition effect
-    transform: visible ? "translateY(0)" : "translateY(100%)",
-    opacity: visible ? 1 : 0,
-  };
-
   return (
-    <div
-      style={{
-        marginTop: "10rem",
+    <Box
+      sx={{
         position: "absolute",
         width: "100%",
         height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
       }}
     >
-      <div
-        style={{
-          ...commonStyles,
-          width: "70%",
-          height: "70%",
-          top: "-5%",
-          left: "15%",
-          zIndex: 100,
-          transitionDelay: `${baseTransitionDelay * 0}s`,
+      <StyledBox
+        visible={visible}
+        delay={0}
+        order={4}
+        sx={{
+          right: { xs: "5%", sm: "5%" },
+          top: { xs: "0%", sm: "15%", md: "20%" },
         }}
       >
         <img
@@ -70,18 +80,19 @@ const ConstSlider = () => {
             width: "100%",
             height: "100%",
             borderRadius: "10px",
-            objectFit: "fill",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
           }}
         />
-      </div>
+      </StyledBox>
 
-      <div
-        style={{
-          ...commonStyles,
-          left: "10%",
-          top: "5%",
-          zIndex: 90,
-          transitionDelay: `${baseTransitionDelay * 1}s`,
+      <StyledBox
+        visible={visible}
+        delay={1}
+        order={4}
+        sx={{
+          left: { xs: "0%", sm: "5%" },
+          top: { xs: "15%", sm: "0%", md: "20%" },
         }}
       >
         <img
@@ -91,18 +102,19 @@ const ConstSlider = () => {
             width: "100%",
             height: "100%",
             borderRadius: "10px",
-            objectFit: "fill",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
           }}
         />
-      </div>
+      </StyledBox>
 
-      <div
-        style={{
-          ...commonStyles,
-          right: "10%",
-          top: "5%",
-          zIndex: 90,
-          transitionDelay: `${baseTransitionDelay * 2}s`,
+      <StyledBox
+        visible={visible}
+        delay={2}
+        order={3}
+        sx={{
+          right: { xs: "0%", sm: "10%" },
+          top: { xs: "5%", sm: "0%", md: "15%" },
         }}
       >
         <img
@@ -112,18 +124,19 @@ const ConstSlider = () => {
             width: "100%",
             height: "100%",
             borderRadius: "10px",
-            objectFit: "fill",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
           }}
         />
-      </div>
+      </StyledBox>
 
-      <div
-        style={{
-          ...commonStyles,
-          left: "5%",
-          top: "10%",
-          zIndex: 80,
-          transitionDelay: `${baseTransitionDelay * 3}s`,
+      <StyledBox
+        visible={visible}
+        delay={3}
+        order={2}
+        sx={{
+          left: { xs: "5%", sm: "10%" },
+          top: { xs: "10%", sm: "5%", md: "15%" },
         }}
       >
         <img
@@ -133,18 +146,21 @@ const ConstSlider = () => {
             width: "100%",
             height: "100%",
             borderRadius: "10px",
-            objectFit: "fill",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
           }}
         />
-      </div>
+      </StyledBox>
 
-      <div
-        style={{
-          ...commonStyles,
-          right: "5%",
-          top: "10%",
-          zIndex: 80,
-          transitionDelay: `${baseTransitionDelay * 4}s`,
+      <StyledBox
+        visible={visible}
+        delay={4}
+        order={1}
+        sx={{
+          width: { xs: "80%", sm: "70%", md: "70%" },
+          height: { xs: "40%", sm: "60%", md: "70%" },
+          top: { xs: "25%", sm: "10%", md: "5%" },
+          left: { xs: "10%", sm: "15%" },
         }}
       >
         <img
@@ -154,11 +170,14 @@ const ConstSlider = () => {
             width: "100%",
             height: "100%",
             borderRadius: "10px",
-            objectFit: "fill",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
           }}
         />
-      </div>
-    </div>
+      </StyledBox>
+
+     
+    </Box>
   );
 };
 
