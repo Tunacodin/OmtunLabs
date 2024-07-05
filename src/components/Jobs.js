@@ -1,5 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Box, Typography, Button, useMediaQuery, Stack } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Grid,
+  useMediaQuery,
+  Stack,
+} from "@mui/material";
 import Carousel from "./Carousel";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
@@ -30,17 +37,12 @@ const Jobs = ({
   const handleMouseLeave = () => !clicked && setHover(false);
   const handleClick = () => setClicked(!clicked);
 
-  const containerHeight = isMobile ? "200px" : "250px";
-
   return (
-    <Box
+    <Grid
+      container
+      spacing={2}
       sx={{
-        width: isMobile ? "90%" : isTablet ? "80%" : "60%",
-        height: containerHeight,
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        justifyContent: "center",
-        alignItems: "center",
+        width: { xs: "90%", sm: "80%", md: "60%" },
         boxShadow: 3,
         borderRadius: 1,
         position: "relative",
@@ -48,11 +50,12 @@ const Jobs = ({
         ...style,
       }}
     >
-      <Box
-        ref={detailsRef}
+      <Grid
+        item
+        xs={12}
+        md={6}
         sx={{
-          width: isMobile ? "100%" : "60%",
-          height: containerHeight,
+          height: { xs: "200px", md: "100%" },
           backgroundColor: darkColors.black,
           display: "flex",
           justifyContent: "center",
@@ -60,7 +63,6 @@ const Jobs = ({
           flexDirection: "column",
           position: "relative",
           overflow: "hidden",
-          p: 2,
         }}
       >
         <Typography
@@ -69,7 +71,7 @@ const Jobs = ({
             fontFamily: "Anton",
             color: colors.white,
             pb: 2,
-            fontSize: isMobile ? "1.5rem" : "2rem",
+            fontSize: { xs: "1.5rem", md: "2rem" },
           }}
         >
           {h1}
@@ -81,7 +83,7 @@ const Jobs = ({
             fontFamily: "Poppins",
             fontWeight: 500,
             color: colors.white,
-            fontSize: isMobile ? "0.875rem" : "1rem",
+            fontSize: { xs: "0.875rem", md: "1rem" },
           }}
         >
           {p}
@@ -91,7 +93,7 @@ const Jobs = ({
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
           sx={{
-            color: hover ? color : colors.black,
+            color: colors.black,
             width: "6rem",
             borderRadius: 1,
             padding: ".4rem",
@@ -101,87 +103,52 @@ const Jobs = ({
             fontWeight: 500,
             fontSize: "0.75rem",
             boxShadow: 4,
-            backgroundColor: hover ? bg : colors.white,
-            backgroundColor: clicked ? bg : colors.white,
-            transition: "background-color 0.5s ease-in-out",
+            backgroundColor: colors.white,
+            transition:
+              "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
             mt: 2,
+            ...(hover && {
+              backgroundColor: bg,
+              color: color,
+            }),
+            ...(clicked && {
+              backgroundColor: bg,
+              color: color,
+            }),
           }}
         >
           Daha Fazla
         </Button>
-      </Box>
+      </Grid>
 
-      <Box
+      <Grid
+        item
+        xs={12}
+        md={6}
         sx={{
-          width: isMobile ? "100%" : "40%",
-          height: containerHeight,
-          mt: isMobile ? 2 : 0,
-        }}
-      >
-        <Carousel
-          images={images}
-          style={{ height: "100%", overflow: "hidden", borderRadius: 1 }}
-        />
-      </Box>
-
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          right: hover || clicked ? 0 : `-${detailsRef.current?.offsetWidth}px`,
-          width: isMobile ? "100%" : "45%",
-          height: containerHeight,
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
-          color: "white",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          transition: "right 0.7s ease-in-out, opacity 0.8s ease-in-out",
-          opacity: hover || clicked ? 1 : 0,
-          zIndex: 2,
-          borderRadius: isMobile ? "0" : "0 1rem 1rem 0",
-          p: 2,
+          height: { xs: "200px", md: "100%" },
+          mt: { xs: 2, md: 0 },
+          
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 1,
-            overflowY: "auto",
-            maxHeight: isMobile ? "70%" : "80%",
-          }}
-        >
-          <ul
-            style={{
-              listStyleType: "disc",
-              paddingLeft: "1.5rem",
-              fontFamily: "Poppins",
-              fontSize: isMobile ? "0.75rem" : "1rem",
-            }}
-          >
-            {features.map((feature, index) => (
-              <li key={index} style={{ marginBottom: "0.5rem" }}>
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </Box>
-
-        <Stack
-          sx={{
-            alignSelf: "flex-end",
-            mr: 1,
-            mb: 1,
             width: "100%",
+            height: "100%",
           }}
-          direction={isMobile ? "row" : "column"}
-          justifyContent="flex-end"
         >
-          <TeklifAl btncolor={btncolor} />
-        </Stack>
-      </Box>
-    </Box>
+          <Carousel
+            images={images}
+            style={{
+              width: "100%",
+              height: "100%",
+              overflow: "hidden",
+              borderRadius: 1,
+            }}
+          />
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 

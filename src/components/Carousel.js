@@ -13,7 +13,7 @@ const Carousel = ({ images, style }) => {
       );
     }, 3000);
     return () => clearInterval(interval);
-  }, [currentIndex, images.length]);
+  }, [images.length]);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -34,14 +34,14 @@ const Carousel = ({ images, style }) => {
   return (
     <Box
       position="relative"
-      width="100%"
+      width="40%"
       height={isMobile ? "150px" : "100%"}
       sx={{
         ...style,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        overflow: "hidden",
+        
       }}
     >
       <IconButton

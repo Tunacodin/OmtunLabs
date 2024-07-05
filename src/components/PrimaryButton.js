@@ -13,7 +13,7 @@ const fillAnimation = keyframes`
   }
 `;
 
-const PrimaryButton = ({ style,text }) => {
+const PrimaryButton = ({ style, text, fontSize, fontFamily, fontWeight }) => {
   return (
     <div
       style={{
@@ -29,7 +29,7 @@ const PrimaryButton = ({ style,text }) => {
         borderRadius: "3rem",
         backgroundColor: colors.black,
         margin: "auto",
-        fontFamily: "Poppins, sans-serif",
+        fontFamily: fontFamily ? fontFamily : "Poppins, sans-serif",
         ...style,
       }}
     >
@@ -37,18 +37,16 @@ const PrimaryButton = ({ style,text }) => {
         variant=""
         size="large"
         sx={{
-            color: "white",
-            boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
+          color: "white",
+          boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
           background: `linear-gradient(
             110deg,
-            #BBA896 0%,
-            #BBA896 100%
+            ${colors.mor} 0%,
+            ${colors.mor} 100%
           )`,
           backgroundSize: "0% 100%",
           backgroundRepeat: "no-repeat",
-          transition: "color .6s ease-in-out",
-          transition: "background-size  0.6s ease-in-out",
-
+          transition: "color .6s ease-in-out, background-size 0.6s ease-in-out",
           ":hover": {
             backgroundSize: "100% 100%",
           },
@@ -59,9 +57,9 @@ const PrimaryButton = ({ style,text }) => {
           borderRadius: "3rem",
           justifyContent: "center",
           alignItems: "center",
-          fontFamily: "Anton",
-          fontSize: "1.5rem",
-          
+          fontFamily: fontFamily ? fontFamily : "Anton",
+          fontSize: fontSize ? fontSize : "1.5rem",
+          fontWeight: fontWeight ? fontWeight : 400,
         }}
       >
         {text}

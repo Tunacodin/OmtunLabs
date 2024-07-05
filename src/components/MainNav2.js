@@ -1,32 +1,50 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Toolbar, Box } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  IconButton,
+  Drawer,
+  Button,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
   Home,
   MenuBook,
-  Group,
-  MonetizationOn,
-  ArrowRight,
+  ContactMail,
+  Menu as MenuIcon,
 } from "@mui/icons-material";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import colors from "../consts/colors";
-import Logo from "./Logo";
 import darkColors from "../consts/darkColors";
+import img from "../img/OmTUnlabsMobil.svg"; // Assuming this is your SVG image
+import Logo from "./Logo";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "space-between",
   width: "100%",
+  margin: "auto",
   position: "fixed",
   height: "6rem",
   top: 0,
   left: 0,
   zIndex: 1000,
   boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
-  transition: "background-color 1s, color 1s, transform 1s ease-in-out",
+  transition: "background-color 0.5s, color 0.5s, transform 0.5s ease-in-out",
   backgroundColor: darkColors.darkBlack,
   color: "#F7F7F7",
+  "&.scroll-up": {
+    transform: "translateY(0)",
+    backgroundColor: colors.white,
+    color: darkColors.darkBlack,
+  },
+  "&.scroll-down": {
+    transform: "translateY(-100%)",
+    backgroundColor: darkColors.darkBlack,
+    color: "#F7F7F7",
+  },
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -34,6 +52,9 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: "space-around",
   width: "90%",
   padding: theme.spacing(2),
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "space-between",
+  },
 }));
 
 const StyledLink = styled(ScrollLink)(({ theme }) => ({
@@ -72,74 +93,36 @@ const StyledLink = styled(ScrollLink)(({ theme }) => ({
   },
 }));
 
-const DropdownMenu = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "100%",
-  left: 0,
+const DrawerContainer = styled(Box)(({ theme }) => ({
+  width: "100vw",
+  height: "50vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "1rem",
   backgroundColor: darkColors.darkBlack,
   color: "#F7F7F7",
-  minWidth: "200px",
-  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)",
-  zIndex: 1000,
-  display: "none",
-  flexDirection: "column",
-  transition: "transform 0.9s ease-out",
-  padding: theme.spacing(2),
   "& a": {
     color: "#F7F7F7",
-    padding: theme.spacing(1),
     textDecoration: "none",
-    transition: "transform 0.9s ease-out",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: colors.mor,
-    },
-  },
-}));
-
-const KatalogLink = styled(StyledLink)(({ theme }) => ({
-  "&:hover": {
-    "& > .dropdown-menu": {
-      display: "flex",
-    },
-    "& > .arrow-icon": {
-      transform: "rotate(90deg)",
-    },
-  },
-}));
-
-const StyledButtonLink = styled(ScrollLink)(({ theme }) => ({
-  fontSize: "1.2rem",
-  fontFamily: "Poppins",
-  color: "inherit",
-  textDecoration: "none",
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-  gap: "0.5rem",
-  cursor: "pointer",
-  backgroundColor: colors.white,
-  color: darkColors.darkBlack,
-  padding: "0.5rem 1rem",
-  borderRadius: "5px",
-  "&:hover": {
-    backgroundColor: colors.mor,
-    color: colors.white,
-    transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-y",
   },
 }));
 
 const MainNav2 = () => {
-  const [hidden, setHidden] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop && scrollTop > 200) {
-      // 48 yerine 200
-      setHidden(true);
+      // Scroll down
+      document.body.classList.add("scroll-down");
+      document.body.classList.remove("scroll-up");
     } else {
-      setHidden(false);
+      // Scroll up
+      document.body.classList.remove("scroll-down");
+      document.body.classList.add("scroll-up");
     }
     setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
   };
@@ -151,53 +134,106 @@ const MainNav2 = () => {
     };
   }, [lastScrollTop]);
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
   return (
-    <StyledAppBar
-      position="static"
-      style={{
-        backgroundColor: hidden ? "#F7F7F7" : darkColors.darkBlack,
-        color: hidden ? darkColors.darkBlack : "#F7F7F7",
-        transform: hidden ? "translateY(-100%)" : "translateY(0)",
-      }}
-    >
+    <StyledAppBar position="static">
       <StyledToolbar>
-        <div
-          style={{
-            marginLeft: "-20rem",
-            transition: "transform 2s ease-in-out",
-            cursor: "pointer",
+        <Box
+          sx={{
+            position: { xs: "absolute", md: "static" },
+            left: { xs: "50%", md: "auto" },
+            transform: { xs: "translateX(-50%)", md: "none" },
+            display: "flex",
+            alignItems: "center",
           }}
-          onClick={() => scroll.scrollToTop()}
         >
           <Logo />
-        </div>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={img}
+              alt="Logo"
+              style={{ width: "80%", maxWidth: "150px" }}
+            />
+          </div>
+        </Box>
+        <IconButton
+          onClick={toggleDrawer}
+          sx={{ display: { md: "none" },position: { xs: "absolute", md: "static" },right: { xs: "0%", md: "auto" },transform: { xs: "translateX(-50%)", md: "none" } }}
+        >
+          <MenuIcon sx={{ fontSize: "2rem", color: "#F7F7F7" }} />
+        </IconButton>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 3,
+          }}
+        >
           <StyledLink to="hero" smooth={true} duration={500}>
             <Home /> Anasayfa
           </StyledLink>
-          <StyledLink to="about-us" smooth={true} duration={500}>
-            <Home /> Hakkımızda
+          <StyledLink to="catalog" smooth={true} duration={500}>
+            <MenuBook /> Ürünler
           </StyledLink>
-          <KatalogLink to="catalog" smooth={true} duration={500}>
-            <MenuBook /> Katalog <ArrowRight className="arrow-icon" />
-            <DropdownMenu className="dropdown-menu">
-              <ScrollLink to="projects" smooth={true} duration={500}>
-                Projeler
-              </ScrollLink>
-              <ScrollLink to="open-source" smooth={true} duration={500}>
-                Açık Kaynak Ürünler
-              </ScrollLink>
-            </DropdownMenu>
-          </KatalogLink>
-          <StyledLink to="team" smooth={true} duration={500}>
-            <Group /> Takım
+          <StyledLink to="contact" smooth={true} duration={500}>
+            <ContactMail /> İletişim
           </StyledLink>
-          <StyledButtonLink to="get-quote" smooth={true} duration={500}>
-            <MonetizationOn /> Teklif Alın
-          </StyledButtonLink>
+          <Button
+            variant="text"
+            color="inherit"
+            sx={{
+              backgroundColor: colors.white,
+              color: darkColors.darkBlack,
+              "&:hover": {
+                backgroundColor: colors.mor,
+                color: colors.white,
+              },
+              ml: "auto",
+            }}
+          >
+            Teklif Al
+          </Button>
         </Box>
       </StyledToolbar>
+
+      <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer}>
+        <DrawerContainer>
+          <StyledLink to="hero" smooth={true} duration={500}>
+            <Home /> Anasayfa
+          </StyledLink>
+          <StyledLink to="catalog" smooth={true} duration={500}>
+            <MenuBook /> Ürünler
+          </StyledLink>
+          <StyledLink to="contact" smooth={true} duration={500}>
+            <ContactMail /> İletişim
+          </StyledLink>
+          <Button
+            variant="text"
+            sx={{
+              backgroundColor: colors.mor,
+              color: "white",
+              fontFamily: "Poppins",
+              fontSize: "1rem",
+              "&:hover": {
+                backgroundColor: colors.mor,
+                color: colors.white,
+              },
+            }}
+            onClick={toggleDrawer}
+          >
+            Teklif Al
+          </Button>
+        </DrawerContainer>
+      </Drawer>
     </StyledAppBar>
   );
 };
