@@ -44,7 +44,7 @@ const HeroBody = ({ text }) => {
     if (visible) {
       const timer = setTimeout(() => {
         setShowTypography(true);
-      }, 3500); // Adjust delay based on ConstSlider animations
+      }, 1100); // Adjust delay based on ConstSlider animations
       return () => clearTimeout(timer);
     } else {
       setShowTypography(false);

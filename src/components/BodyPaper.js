@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Button, IconButton, Paper, Typography } from "@mui/material";
+import { Button, IconButton, Paper, Typography, Box } from "@mui/material";
 import Fingerprint from "@mui/icons-material/Fingerprint";
 import ArrowOutward from "@mui/icons-material/ArrowOutward";
 import RateDiv from "./Rating";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
-import "../App.css"
+import "../App.css";
 
 const rateValues = [4.2, 4.5, 4.9, 5.0];
 
@@ -30,7 +30,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
   const handleMouseLeave = () => {
     setStyle({
       transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
-      transition: "transform 0.5s ease", // Smoothly return to original state
+      transition: "transform 0.3s ease", // Smoothly return to original state
     });
     setIsHovered(false);
   };
@@ -42,17 +42,16 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
   return (
     <Paper
       elevation={3}
-
-      style={{
+      sx={{
         fontFamily: "Poppins",
+        width: "100%",
         height: "50vh", // Fixed height for consistent appearance
-        margin: "1rem",
         color: darkColors.black,
         display: "flex",
         flexDirection: "column",
         position: "relative",
         cursor: "pointer",
-        transition: "transform 0.5s ease",
+        transition: "transform 0.2s ease",
         borderRadius: "1rem",
         transformStyle: "preserve-3d", // Preserve 3D transformation
         ...style,
@@ -61,42 +60,45 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
     >
-      <img
+      <Box
+        component="img"
         src={img}
         alt="img"
-        style={{
+        sx={{
           width: "100%",
-          height: "90%",
+          height: "100%",
           objectFit: "cover",
           position: "relative",
           top: 0,
           left: 0,
           opacity: isHovered ? 0.5 : 1,
           transition: "opacity 0.5s ease",
+          borderRadius: "1rem",
         }}
       />
 
-      <div
-        style={{
+      <Box
+        sx={{
           fontFamily: "Poppins",
           color: "white",
           position: "absolute",
-          top: -10,
+          top: 0,
           right: 0,
           padding: "5px 10px",
-          backgroundColor: "#B052C0",
-          minWidth: "45%",
+          backgroundColor: colors.mor,
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+          minWidth: "35%",
           height: "5%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0px 4px 8px rgba(120, 120, 120, 0.6)", // Box shadow
           fontSize: "1.1rem", // Font boyutu
-          borderRadius: "0rem 0rem 0rem 1rem",
+          borderRadius: "0rem 1rem 0rem 1rem",
         }}
       >
-        <h3
-          style={{
+        <Typography
+          variant="h6"
+          sx={{
             fontFamily: "Poppins",
             textAlign: "start",
             fontWeight: 300,
@@ -104,11 +106,11 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           }}
         >
           {text}
-        </h3>
-      </div>
+        </Typography>
+      </Box>
 
-      <div
-        style={{
+      <Box
+        sx={{
           width: "100%",
           height: "10%",
           display: "flex",
@@ -122,13 +124,13 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
         }}
       >
         <Button
-          style={{
+          sx={{
             width: showSourceCode ? "45%" : "90%",
             height: "60%",
-            opacity: 0.8,
             fontSize: ".8rem",
+            backgroundColor: colors.mor,
+            transition: "background-color 0.5s ease-in-out",
           }}
-          color="secondary"
           variant="contained"
           endIcon={<ArrowOutward />}
           href={link}
@@ -138,8 +140,8 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
         </Button>
 
         {showSourceCode && (
-          <div
-            style={{
+          <Box
+            sx={{
               borderWidth: "1px",
               borderStyle: "solid",
               borderColor: colors.mor,
@@ -150,32 +152,32 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
               alignItems: "center",
               flexDirection: "row",
               borderRadius: "1rem",
-              gap: "3rem",
+              gap: "1rem",
             }}
           >
             <IconButton
               aria-label="fingerprint"
               color="secondary"
-              style={{ width: "40px", height: "40px" }}
+              sx={{ width: "40px", height: "40px" }}
               href={linkgit}
             >
               <Fingerprint />
             </IconButton>
-            <div
-              style={{
-                fontSize: "1rem",
-                marginLeft: "-2rem",
+            <Typography
+              variant="body2"
+              sx={{
                 fontFamily: "Poppins",
+                marginLeft: "-2rem",
               }}
             >
               Kaynak Kod
-            </div>
-          </div>
+            </Typography>
+          </Box>
         )}
-      </div>
+      </Box>
 
-      <div
-        style={{
+      <Box
+        sx={{
           position: "absolute",
           bottom: "10%",
           width: "100%",
@@ -184,10 +186,10 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
         }}
       >
         <RateDiv defaultValue={rateValues[0]} precision={0.1} />
-      </div>
+      </Box>
 
-      <div
-        style={{
+      <Box
+        sx={{
           position: "absolute",
           bottom: isHovered ? "20%" : "10%",
           width: "90%",
@@ -205,18 +207,17 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
         }}
       >
         <Typography
-          variant="h6"
+          variant="body1"
           p={3}
-          component="div"
-          style={{
+          sx={{
             textAlign: "center",
             fontFamily: "Poppins",
-            fontWeight: "500",
+            fontWeight: 500,
           }}
         >
           {desc}
         </Typography>
-      </div>
+      </Box>
     </Paper>
   );
 };

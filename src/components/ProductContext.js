@@ -19,17 +19,7 @@ backgroundColor:"white"
         
       }}
     >
-      <Stick
-        style={{
-          ...style,
-          backgroundColor: colors.black,
-          right: 0,
-          top: "110rem",
-          width: "5%",
-         
-        
-        }}
-      />
+  
 
       <div>
         

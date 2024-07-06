@@ -1,176 +1,147 @@
 import React from "react";
-import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
-import mapImage from "../img/map.png";
-import  darkColors  from "../consts/colors";
+import { Grid, Typography, TextField, Button, Box } from "@mui/material";
 import colors from "../consts/colors";
+import darkColors from "../consts/darkColors";
 
 const ContactUs = () => {
   return (
-    <Grid
-      container
-      style={{
-        backgroundColor: "#1e1e1e",
+    <Box
+      sx={{
+        width: "100%",
         minHeight: "100vh",
+        backgroundColor: darkColors.black,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
         fontFamily: "Poppins",
-        padding: "3rem",
       }}
-      alignItems="center"
-      justifyContent="space-around"
     >
-      <Grid
-        style={{ overflow: "hidden" }}
-        item
-        md={6}
-        component={Paper}
-        
-        square
+      <Typography
+        sx={{
+          textAlign: "center",
+          fontFamily: "Anton",
+          color: colors.white,
+          fontSize: { xs: "2rem", md: "3rem" },
+          marginBottom: "2rem",
+        }}
+        variant="h4"
+        gutterBottom
       >
-        <div
-          style={{
-            padding: "2rem",
+        Bize Ulaşın
+      </Typography>
+
+      <Box
+        sx={{
+          width: { xs: "50%", md: "50%" },
+          backgroundColor: colors.white,
+          boxShadow:
+            "0 0 20px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.24)",
+          color: colors.white,
+          borderRadius: "1rem",
+          overflow: "hidden",
+          padding: "2rem",
+        }}
+      >
+        <Typography
+          variant="body1"
+          sx={{
+            marginBottom: "2rem",
             color: colors.platinum,
-            backgroundColor: "#1e1e1e",
+            textAlign: "center",
           }}
-        >
-          <Typography
-            style={{
-              fontFamily: "Anton",
-              color: colors.platinum,
-              fontSize: "3rem",
-            }}
-            variant="h4"
-            gutterBottom
-          >
-            Contact Us
-          </Typography>
-          <Typography variant="body1">
-            Our support team is always available to answer your questions and
-            help you with any issues you may have. Please feel free to contact
-            us using the form below.
-          </Typography>
-        </div>
-        <div style={{ padding: "2rem", backgroundColor: "#1e1e1e" }}>
-          <Grid
-            style={{
-              color: colors.platinum,
-              borderColor: colors.platinum,
-              backgroundColor: "white",
-              padding: "2rem",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: "1rem",
-            }}
-            container
-            spacing={2}
-          >
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                type="text"
-                color="primary"
-                label="Name"
-                InputProps={{
-                  style: {
-                    backgroundColor: colors.primary,
-                    color: "black",
-                    padding: "5px",
-                    fontWeight: 400,
-                    borderWidth: 2,
-                    fontSize: "1rem",
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Email"
-                type="email"
-                InputProps={{
-                  style: {
-                    backgroundColor: colors.primary,
-                    color: "black",
-                    padding: "5px",
-                    fontWeight: 400,
-                    borderWidth: 2,
-                    fontSize: "1rem",
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Subject"
-                InputProps={{
-                  style: {
-                    backgroundColor: colors.primary,
-                    color: "black",
-                    padding: "5px",
-                    fontWeight: 400,
-                    borderWidth: 2,
-                    fontSize: "1rem",
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Message"
-                multiline
-                rows={4}
-                InputProps={{
-                  style: {
-                    backgroundColor: colors.primary,
-                    color: "black",
-                    padding: "10px",
-                    paddingLeft: "1.2rem",
-                    fontWeight: 400,
-                    borderWidth: 2,
-                    fontSize: "1rem",
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                style={{
-                  backgroundColor: colors.primary,
+        ></Typography>
+
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Name"
+              type="text"
+              size="medium"
+              InputProps={{
+                sx: {
+                  color: "white",
+                  fontWeight: 400,
+                  marginTop: "px",
+                  marginBottom: "5px",
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Email"
+              type="email"
+              color="secondary"
+              InputProps={{
+                sx: {
                   color: "black",
-                  padding: "1rem",
-                  fontWeight: 600,
+                  fontWeight: 400,
+                  borderWidth: 2,
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Subject"
+              InputProps={{
+                sx: {
+                  color: "black",
+                  padding: "5px",
+                  fontWeight: 400,
                   borderWidth: 2,
                   fontSize: "1rem",
-                  color: colors.platinum,
-                }}
-              >
-                Submit
-              </Button>
-            </Grid>
+                },
+              }}
+            />
           </Grid>
-        </div>
-      </Grid>
-      <Grid style={{ width: "100%", borderRadius: "1rem" }} item md={5}>
-        <img
-          src={mapImage}
-          alt="map"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius: "1rem",
-          }}
-        />
-      </Grid>
-    </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Message"
+              multiline
+              rows={4}
+              InputProps={{
+                sx: {
+                  color: "black",
+                  padding: "10px",
+                  paddingLeft: "1.2rem",
+                  fontWeight: 400,
+                  borderWidth: 2,
+                  fontSize: "1rem",
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              fullWidth
+              sx={{
+                backgroundColor: darkColors.black,
+                color: colors.white,
+                padding: "1rem",
+                fontWeight: 600,
+                borderWidth: 2,
+                fontSize: "1rem",
+                marginTop: "1rem",
+                transition:
+                  "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
+                "&:hover": {
+                  backgroundColor: colors.mor,
+                },
+              }}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

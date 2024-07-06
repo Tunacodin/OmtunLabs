@@ -11,12 +11,10 @@ import Carousel from "./Carousel";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
 import TeklifAl from "./TeklifAl";
-import img1 from "../img/web1.png";
-import img2 from "../img/web2.png";
-import img3 from "../img/web4.png";
+
 
 const Jobs = ({
-  images = [img1, img2, img3],
+images,
   style,
   h1,
   p,

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import vid1 from "../img/hero1.mp4";
-import vid2 from "../img/hero2.mp4";
+import vid1 from "../img/Om tun2.mp4";
 
-const videos = [vid1, vid2];
+const videos = [vid1];
 
 const VideoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

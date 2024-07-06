@@ -2,8 +2,22 @@ import React from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import Jobs from "./Jobs";
 import colors from "../consts/colors";
-
+import img1 from "../img/web5.png";
+import img2 from "../img/web7.png";
+import img3 from "../img/web8.png";
+import img4 from "../img/web9.png";
+import img5 from "../img/web1.png";
+import img6 from "../img/web2.png";
+import img7 from "../img/web4.png";
+import img8 from "../img/web6.png";
 const WhatWeDo = ({ style }) => {
+
+
+
+  const webImages = [img1, img2, img3];
+  const mobileImages = [img4, img5, img6];
+  const desktopImages = [img8, img7, img4,  img5, img6];
+
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery((theme) =>
     theme.breakpoints.between("sm", "md")
@@ -21,24 +35,29 @@ const WhatWeDo = ({ style }) => {
         flexDirection: "column",
         alignItems: "center",
         gap: 4,
-        pt: 9,
+        pt: 5,
         pb: 6,
-        
+
         ...style,
       }}
     >
       <Typography
-        variant="h3"
+        variant={isMobile ? "h4" : "h2"}
+        
         sx={{
+          width: "60%",
           fontFamily: "Anton",
           color: colors.white,
-          textAlign: "center",
+          textAlign: "isMobile" ? "center" : "left",
+paddingY:3
+          
         }}
       >
-        Ne Yapıyoruz
+        Teknolojilerimiz
       </Typography>
 
       <Jobs
+        images={webImages}
         alignItems="flex-end"
         color="white"
         btncolor={colors.white}
@@ -62,6 +81,7 @@ const WhatWeDo = ({ style }) => {
       />
 
       <Jobs
+        images={mobileImages}
         alignItems="flex-end"
         btncolor={colors.white}
         bg={colors.yellow}
@@ -82,6 +102,7 @@ const WhatWeDo = ({ style }) => {
       />
 
       <Jobs
+        images={desktopImages}
         alignItems="flex-end"
         btncolor={colors.white}
         bg={colors.green}

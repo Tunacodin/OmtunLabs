@@ -16,7 +16,7 @@ const StyledBox = styled(Box)(({ theme, visible, delay, order }) => ({
   borderRadius: 20,
   boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
   overflow: "hidden",
-  transition: `transform 3s ease-in-out ${delay}s, opacity 3s ease-in-out ${delay}s`,
+  transition: `transform 1s ease-in-out ${delay}s, opacity 1s ease-in-out ${delay}s`,
   transform: visible ? "translateY(0)" : "translateY(100%)",
   opacity: visible ? 1 : 0,
   zIndex: 100 - order,
@@ -66,7 +66,7 @@ const ConstSlider = () => {
     >
       <StyledBox
         visible={visible}
-        delay={0}
+        delay={0.5}
         order={4}
         sx={{
           right: { xs: "5%", sm: "5%" },
@@ -110,7 +110,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={2}
+        delay={1.2}
         order={3}
         sx={{
           right: { xs: "0%", sm: "10%" },
@@ -132,7 +132,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={3}
+        delay={1.5}
         order={2}
         sx={{
           left: { xs: "5%", sm: "10%" },
@@ -154,7 +154,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={4}
+        delay={1.6}
         order={1}
         sx={{
           width: { xs: "80%", sm: "70%", md: "70%" },

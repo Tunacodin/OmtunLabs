@@ -143,31 +143,29 @@ const MainNav2 = () => {
       <StyledToolbar>
         <Box
           sx={{
-            position: { xs: "absolute", md: "static" },
-            left: { xs: "50%", md: "auto" },
+            position: { xs: "relative", md: "static" },
+            left: { xs: "45%", md: "auto" },
             transform: { xs: "translateX(-50%)", md: "none" },
             display: "flex",
             alignItems: "center",
           }}
         >
           <Logo />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              src={img}
-              alt="Logo"
-              style={{ width: "80%", maxWidth: "150px" }}
-            />
-          </div>
+          <img
+            src={img}
+            alt="Logo"
+            style={{ width: "70%", maxWidth: "140px", marginLeft: "0px" }}
+          />
         </Box>
+
         <IconButton
           onClick={toggleDrawer}
-          sx={{ display: { md: "none" },position: { xs: "absolute", md: "static" },right: { xs: "0%", md: "auto" },transform: { xs: "translateX(-50%)", md: "none" } }}
+          sx={{
+            display: { md: "none" },
+            position: { xs: "absolute", md: "static" },
+            right: { xs: "0%", md: "auto" },
+            transform: { xs: "translateX(-50%)", md: "none" },
+          }}
         >
           <MenuIcon sx={{ fontSize: "2rem", color: "#F7F7F7" }} />
         </IconButton>
