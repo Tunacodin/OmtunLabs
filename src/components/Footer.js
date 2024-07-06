@@ -120,7 +120,7 @@ const Footer = () => {
         </Grid>
 
         {/* Abonelik Formu */}
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} sx={{display:{xs:"none",md:"block"}}}>
           <Typography variant="h6" gutterBottom>
             Abone Ol
           </Typography>

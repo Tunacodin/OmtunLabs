@@ -29,11 +29,12 @@ const WhatWeDo = ({ style }) => {
     <Box
       sx={{
         width: "100%",
-        minHeight: "110vh",
         backgroundColor: colors.black,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
+        marginX: "auto",
         gap: 4,
         pt: 5,
         pb: 6,

@@ -100,18 +100,7 @@ const OpenSource = () => (
       alignItems="center"
       justifyContent="center"
     >
-      <Stick
-        stickyBg={bg}
-        style={{ left: "0rem", top: "10rem", width: "14.5rem", zIndex: 0 }}
-      />
-      <Stick
-        stickyBg={bg}
-        style={{
-          right: 2,
-          top: 0,
-          transform: "rotate(90deg)",
-        }}
-      />
+
 
       {paperInfo.map((info, index) => (
         <Grid

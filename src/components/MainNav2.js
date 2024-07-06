@@ -13,6 +13,7 @@ import {
   MenuBook,
   ContactMail,
   Menu as MenuIcon,
+  Build as BuildIcon,
 } from "@mui/icons-material";
 import { Link as ScrollLink } from "react-scroll";
 import colors from "../consts/colors";
@@ -151,21 +152,24 @@ const MainNav2 = () => {
           }}
         >
           <Logo />
-          <img
-            src={img}
-            alt="Logo"
-            style={{ width: "70%", maxWidth: "140px", marginLeft: "0px" }}
-          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={img}
+              alt="Logo"
+              style={{ width: "70%", maxWidth: "150px" }}
+            />
+          </div>
         </Box>
-
         <IconButton
           onClick={toggleDrawer}
-          sx={{
-            display: { md: "none" },
-            position: { xs: "absolute", md: "static" },
-            right: { xs: "0%", md: "auto" },
-            transform: { xs: "translateX(-50%)", md: "none" },
-          }}
+          size="large"
+          sx={{ display: { md: "none" }, position: "absolute", right: 0 }}
         >
           <MenuIcon sx={{ fontSize: "2rem", color: "#F7F7F7" }} />
         </IconButton>
@@ -178,6 +182,9 @@ const MainNav2 = () => {
         >
           <StyledLink to="hero" smooth={true} duration={500}>
             <Home /> Anasayfa
+          </StyledLink>
+          <StyledLink to="tech" smooth={true} duration={500}>
+            <BuildIcon /> Teknolojiler
           </StyledLink>
           <StyledLink to="catalog" smooth={true} duration={500}>
             <MenuBook /> Ürünler
@@ -211,25 +218,38 @@ const MainNav2 = () => {
           <StyledLink to="catalog" smooth={true} duration={500}>
             <MenuBook /> Ürünler
           </StyledLink>
+          <StyledLink to="technologies" smooth={true} duration={500}>
+            
+              <BuildIcon /> Teknolojiler
+                </StyledLink>
           <StyledLink to="contact" smooth={true} duration={500}>
             <ContactMail /> İletişim
           </StyledLink>
-          <Button
-            variant="text"
+          <Box
             sx={{
-              backgroundColor: colors.mor,
-              color: "white",
-              fontFamily: "Poppins",
-              fontSize: "1rem",
-              "&:hover": {
-                backgroundColor: colors.mor,
-                color: colors.white,
-              },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "1rem",
             }}
-            onClick={toggleDrawer}
           >
-            Teklif Al
-          </Button>
+            <Button
+              variant="text"
+              sx={{
+                backgroundColor: colors.mor,
+                color: "white",
+                fontFamily: "Poppins",
+                fontSize: "1rem",
+                "&:hover": {
+                  backgroundColor: colors.mor,
+                  color: colors.white,
+                },
+              }}
+              onClick={toggleDrawer}
+            >
+              Teklif Al
+            </Button>
+          </Box>
         </DrawerContainer>
       </Drawer>
     </StyledAppBar>

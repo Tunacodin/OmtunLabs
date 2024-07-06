@@ -105,7 +105,11 @@ const Customer = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "60%",
+          width:{
+            xs: "95%",
+            sm: "60%",
+            md: "60%",
+            lg: "60%",},
         }}
       >
         {paperInfo.map((info, index) => (

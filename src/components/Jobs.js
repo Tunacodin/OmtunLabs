@@ -45,6 +45,7 @@ images,
         borderRadius: 1,
         position: "relative",
         overflow: "hidden",
+marginLeft:.5,        
         ...style,
       }}
     >

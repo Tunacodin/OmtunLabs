@@ -33,7 +33,7 @@ const ContactUs = () => {
 
       <Box
         sx={{
-          width: { xs: "50%", md: "50%" },
+          width: { xs: "80%", md: "50%" },
           backgroundColor: colors.white,
           boxShadow:
             "0 0 20px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.24)",

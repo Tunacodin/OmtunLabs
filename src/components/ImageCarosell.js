@@ -2,11 +2,27 @@ import React, { useState, useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import vid1 from "../img/Om tun2.mp4";
+import vid2 from "../img/omtunmobilvideo.mp4";
 
 const videos = [vid1];
+const videos2 = [vid2];
 
 const VideoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 960); // Adjust breakpoint as needed
+    };
+
+    handleResize(); // Check initial size
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const nextVideo = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
@@ -45,50 +61,46 @@ const VideoCarousel = () => {
         justifyContent: "center",
       }}
     >
-      {videos.map((video, index) => (
+      {isMobileView ? (
         <Box
-          key={index}
           sx={{
-            display: index === currentIndex ? "block" : "none",
             width: "100%",
             height: "100%",
           }}
         >
           <video
-            id={`video-${index}`}
-            src={video}
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            id={`video-2`}
+            src={videos2[0]} // Play videos2 for mobile view
+            style={{ objectFit: "fill", width: "100%", height: "100%" }}
             muted
             autoPlay
             loop
             playsInline
           />
         </Box>
-      ))}
-      <Button
-        onClick={prevVideo}
-        sx={{
-          position: "absolute",
-          left: 10,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-        }}
-      >
-       
-      </Button>
-      <Button
-        onClick={nextVideo}
-        sx={{
-          position: "absolute",
-          right: 10,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-        }}
-      >
-        
-      </Button>
+      ) : (
+        videos.map((video, index) => (
+          <Box
+            key={index}
+            sx={{
+              display: index === currentIndex ? "block" : "none",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <video
+              id={`video-${index}`}
+              src={video}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              muted
+              autoPlay
+              loop
+              playsInline
+            />
+          </Box>
+        ))
+      )}
+    
     </Box>
   );
 };

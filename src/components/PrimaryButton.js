@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import React from "react";
 import colors from "../consts/colors";
 import { keyframes } from "@emotion/react";
@@ -13,13 +13,25 @@ const fillAnimation = keyframes`
   }
 `;
 
-const PrimaryButton = ({ style, text, fontSize, fontFamily, fontWeight }) => {
+const PrimaryButton = ({
+  style,
+  text,
+  fontSize,
+  fontFamily,
+  fontWeight,
+  ...rest
+}) => {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  if (isMobile) {
+    return null; // Don't render the button on mobile screens
+  }
+
   return (
     <div
       style={{
         position: "absolute",
-        width: "10%",
-        height: "5%",
+        width: "fit-content", // Adjusted to fit content width
         zIndex: 600,
         display: "flex",
         alignItems: "center",
@@ -52,14 +64,11 @@ const PrimaryButton = ({ style, text, fontSize, fontFamily, fontWeight }) => {
           },
         }}
         style={{
-          width: "100%",
-          height: "100%",
           borderRadius: "3rem",
-          justifyContent: "center",
-          alignItems: "center",
           fontFamily: fontFamily ? fontFamily : "Anton",
           fontSize: fontSize ? fontSize : "1.5rem",
           fontWeight: fontWeight ? fontWeight : 400,
+          ...rest, // Rest props for additional styles or props
         }}
       >
         {text}

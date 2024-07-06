@@ -129,9 +129,12 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
             height: "60%",
             fontSize: ".8rem",
             backgroundColor: colors.mor,
+            color: "white",
             transition: "background-color 0.5s ease-in-out",
+            "&:hover": {
+              backgroundColor: darkColors.mor,
+            },
           }}
-          variant="contained"
           endIcon={<ArrowOutward />}
           href={link}
           target="_blank"
