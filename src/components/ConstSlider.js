@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 import colors from "../consts/colors";
 import img1 from "../img/web1.png";
@@ -33,25 +33,7 @@ const StyledBox = styled(Box)(({ theme, visible, delay, order }) => ({
   },
 }));
 
-const ConstSlider = () => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+const ConstSlider = ({ visible, delayOffset = 0 }) => {
   return (
     <Box
       sx={{
@@ -62,11 +44,12 @@ const ConstSlider = () => {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
+        marginTop: 15,
       }}
     >
       <StyledBox
         visible={visible}
-        delay={0.5}
+        delay={0.5 + delayOffset}
         order={4}
         sx={{
           right: { xs: "5%", sm: "5%" },
@@ -88,7 +71,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={1}
+        delay={1 + delayOffset}
         order={4}
         sx={{
           left: { xs: "0%", sm: "5%" },
@@ -110,7 +93,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={1.2}
+        delay={1.2 + delayOffset}
         order={3}
         sx={{
           right: { xs: "0%", sm: "10%" },
@@ -132,7 +115,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={1.5}
+        delay={1.5 + delayOffset}
         order={2}
         sx={{
           left: { xs: "5%", sm: "10%" },
@@ -154,7 +137,7 @@ const ConstSlider = () => {
 
       <StyledBox
         visible={visible}
-        delay={1.6}
+        delay={1.6 + delayOffset}
         order={1}
         sx={{
           width: { xs: "80%", sm: "70%", md: "70%" },
@@ -175,8 +158,6 @@ const ConstSlider = () => {
           }}
         />
       </StyledBox>
-
-     
     </Box>
   );
 };

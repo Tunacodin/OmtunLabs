@@ -130,9 +130,9 @@ const AboutUs = ({style}) => {
         {carouselItems.map((item, index) => (
           <div
             key={item.id}
-            className={`carousel-item ${index === currentSlide ? "active" : ""
-              }`}
-         
+            className={`carousel-item ${
+              index === currentSlide ? "active" : ""
+            }`}
           >
             <img
               style={{

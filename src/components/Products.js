@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Grid, Box, Typography, useMediaQuery } from "@mui/material";
 import colors from "../consts/colors";
 import BodyPaper from "./BodyPaper";
@@ -9,7 +9,6 @@ import img3 from "../img/web5.png";
 import img4 from "../img/web8.png";
 import img5 from "../img/web7.png";
 import img6 from "../img/web4.png";
-import "../App.css";
 
 const paperInfo = [
   {
@@ -56,8 +55,59 @@ const paperInfo = [
   },
 ];
 
-const Customer = () => {
+const ProductsPage = () => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  const [visibleSections, setVisibleSections] = useState({
+    title: false,
+    products: Array.from({ length: paperInfo.length }, () => false),
+  });
+
+  const observerOptions = {
+    threshold: 0.1,
+  };
+
+  const observeElement = (element, index) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setVisibleSections((prev) => {
+            const updatedProducts = [...prev.products];
+            updatedProducts[index] = true;
+            return { ...prev, products: updatedProducts };
+          });
+          observer.disconnect();
+        }
+      });
+    }, observerOptions);
+
+    if (element) {
+      observer.observe(element);
+    }
+  };
+
+  const titleRef = useRef(null);
+  useEffect(() => {
+    const titleElement = titleRef.current;
+    observeElement(titleElement, -1);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const titleElement = titleRef.current;
+      if (titleElement && !visibleSections.title) {
+        const rect = titleElement.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          setVisibleSections((prev) => ({ ...prev, title: true }));
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [visibleSections.title]);
 
   return (
     <Box
@@ -77,18 +127,21 @@ const Customer = () => {
       }}
     >
       <Box
+        ref={titleRef}
         sx={{
           width: "60%",
           textAlign: "center",
           marginX: "auto",
           pt: 5,
           pb: 6,
+          opacity: visibleSections.title ? 1 : 0,
+          transition: "opacity 0.5s ease-in-out",
         }}
       >
         <Typography
           variant={isMobile ? "h4" : "h2"}
           sx={{
-            width: "100%", // Başlığın tam genişlikte olmasını sağlar
+            width: "100%",
             fontFamily: "Anton",
             color: colors.white,
             textAlign: "center",
@@ -105,11 +158,7 @@ const Customer = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width:{
-            xs: "95%",
-            sm: "60%",
-            md: "60%",
-            lg: "60%",},
+          width: { xs: "95%", sm: "60%", md: "60%", lg: "60%" },
         }}
       >
         {paperInfo.map((info, index) => (
@@ -117,13 +166,16 @@ const Customer = () => {
             item
             xs={12}
             sm={6}
-            md={4} // Desktopta en fazla 3 sütun
-            lg={4} // Desktopta en fazla 3 sütun
+            md={4} // Desktop displays up to 3 columns
+            lg={4} // Desktop displays up to 3 columns
             key={index}
+            ref={(element) => observeElement(element, index)}
             sx={{
               display: "flex",
               justifyContent: "center",
               maxWidth: "100%",
+              opacity: visibleSections.products[index] ? 1 : 0,
+              transition: "opacity 0.5s ease-in-out",
             }}
           >
             <BodyPaper
@@ -140,4 +192,4 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+export default ProductsPage;

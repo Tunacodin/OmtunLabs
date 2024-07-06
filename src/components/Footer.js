@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Button,
@@ -9,24 +9,53 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
-import colors from "../consts/colors"; // Renkleriniz için yol ayarlaması yapın
+import colors from "../consts/colors";
 import omtun from "../img/OmTunMobil.svg";
 import darkColors from "../consts/darkColors";
 
 const Footer = () => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <Box
+      ref={footerRef}
       sx={{
-        backgroundColor: darkColors.black, // Renk paletinize göre ayarlayın
+        backgroundColor: darkColors.black,
         color: colors.white,
-        padding: "4rem 2rem", // Responsive padding
+        padding: "4rem 2rem",
         mt: "auto",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-around",
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 0.5s ease-in-out",
       }}
     >
       <Grid container spacing={5} style={{ width: "60%" }}>
@@ -120,7 +149,7 @@ const Footer = () => {
         </Grid>
 
         {/* Abonelik Formu */}
-        <Grid item xs={12} md={3} sx={{display:{xs:"none",md:"block"}}}>
+        <Grid item xs={12} md={3} sx={{ display: { xs: "none", md: "block" } }}>
           <Typography variant="h6" gutterBottom>
             Abone Ol
           </Typography>

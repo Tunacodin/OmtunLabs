@@ -35,6 +35,10 @@ const Social = () => {
         zIndex: 1000,
         borderRadius: "3rem",
         gap: "1rem",
+        transition: "background-color 0.3s", // Added transition for background color
+        "&:hover": {
+          backgroundColor: colors.lightGrey, // Soft background color on hover
+        },
       }}
     >
       <Link href="https://www.instagram.com" target="_blank" rel="noopener">
@@ -42,7 +46,7 @@ const Social = () => {
           size="large"
           sx={{
             color: colors.white, // Normal color (white)
-            transition: "color 1s, background 1s",
+            transition: "color 0.3s, background 0.3s",
             "&:hover": {
               background: colors.white, // Hover background (white)
               color: colors.mor, // Hover color (colors.mor)
@@ -56,7 +60,7 @@ const Social = () => {
         <IconButton
           sx={{
             color: colors.white,
-            transition: "color 1s, background 1s",
+            transition: "color 0.3s, background 0.3s",
             "&:hover": {
               background: colors.white,
               color: colors.blue,
@@ -74,7 +78,7 @@ const Social = () => {
         <IconButton
           sx={{
             color: colors.white,
-            transition: "color 1s, background 1s",
+            transition: "color 0.3s, background 0.3s",
             "&:hover": {
               background: colors.white,
               color: darkColors.green,
@@ -88,7 +92,7 @@ const Social = () => {
         <IconButton
           sx={{
             color: colors.white,
-            transition: "color 1s, background 1s",
+            transition: "color 0.3s, background 0.3s",
             "&:hover": {
               background: colors.white,
               color: colors.blue,
@@ -102,7 +106,7 @@ const Social = () => {
         <IconButton
           sx={{
             color: colors.white,
-            transition: "color 1s, background 1s",
+            transition: "color 0.3s, background 0.3s",
             "&:hover": {
               background: colors.white,
               color: colors.blue,

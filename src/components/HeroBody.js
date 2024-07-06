@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Box, useMediaQuery } from "@mui/material";
-import { styled } from "@mui/system";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { styled, keyframes } from "@mui/system";
 import colors from "../consts/colors";
 import ConstSlider from "./ConstSlider";
 import bg from "../img/noktadesenbig.png";
-import TextAnimation from "../consts/textAnimate";
 import "../App.css";
 
 const StyledDiv = styled("div")({
@@ -12,12 +11,23 @@ const StyledDiv = styled("div")({
   flexDirection: "column-reverse",
   alignItems: "center",
   justifyContent: "space-evenly",
-  height: "100vh", // Adjusted height for full viewport
+  height: "100vh",
   width: "100%",
   position: "relative",
   backgroundImage: `url(${bg})`,
   zIndex: 500,
 });
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const HeroBody = ({ text }) => {
   const [visible, setVisible] = useState(false);
@@ -44,7 +54,7 @@ const HeroBody = ({ text }) => {
     if (visible) {
       const timer = setTimeout(() => {
         setShowTypography(true);
-      }, 1100); // Adjust delay based on ConstSlider animations
+      }, 0);
       return () => clearTimeout(timer);
     } else {
       setShowTypography(false);
@@ -55,21 +65,35 @@ const HeroBody = ({ text }) => {
     <StyledDiv>
       <Box
         sx={{
-          width: "80%", // Adjusted width for desktop view
-          height: "100%", // Adjusted height for full viewport
+          width: "80%",
+          height: "100%",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          flexDirection: "row",
           justifyContent: "space-evenly",
           position: "relative",
           overflow: "hidden",
-          paddingTop: isMobile ? "5rem" : "7rem", // Adjusted padding top for mobile and desktop views
-          [isMobile ? "width" : "maxWidth"]: isMobile ? "100%" : "80%", // Adjust width for mobile and non-mobile views
+          paddingTop: isMobile ? "1rem" : "4rem",
+          [isMobile ? "width" : "maxWidth"]: isMobile ? "100%" : "80%",
         }}
       >
-        <ConstSlider />
-
-       
+        <ConstSlider  visible={showTypography} delayOffset={0.3} />
+        <Typography
+          sx={{
+            fontFamily: "Anton",
+            color: colors.black,
+            margin: 2,
+            fontSize: { xs: "2rem", md: "3rem" },
+            textAlign: "center",
+            zIndex: 1000,
+            [isMobile ? "width" : "maxWidth"]: isMobile ? "100%" : "80%",
+            opacity: showTypography ? 1 : 0,
+            animation: showTypography
+              ? `${fadeInUp} 1s ease-out`
+              : "none", // Apply fadeInUp animation when showTypography is true
+          }}
+        >
+          Girişimlerinizi Birlikte Gerçekleştirelim
+        </Typography>
       </Box>
     </StyledDiv>
   );

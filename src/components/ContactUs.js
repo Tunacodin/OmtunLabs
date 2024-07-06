@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Grid, Typography, TextField, Button, Box } from "@mui/material";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
 
 const ContactUs = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    if (formRef.current) {
+      observer.observe(formRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <Box
+      ref={formRef}
       sx={{
         width: "100%",
         minHeight: "100vh",
@@ -15,6 +43,8 @@ const ContactUs = () => {
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Poppins",
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 0.5s ease-in-out",
       }}
     >
       <Typography
