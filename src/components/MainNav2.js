@@ -195,6 +195,7 @@ const MainNav2 = () => {
           <Button
             variant="text"
             color="inherit"
+            href="https://api.whatsapp.com/send?phone=+905387227258&text=Merhaba, İşimi Büyütmeme Yardımcı Olur Musunuz?"
             sx={{
               backgroundColor: colors.white,
               color: darkColors.darkBlack,

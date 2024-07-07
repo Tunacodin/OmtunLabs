@@ -88,6 +88,7 @@ const Techs = ({ style }) => {
           paddingY: 3,
           opacity: visibleSections.title ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          textShadow: "2px 11px 10px rgba(0, 0, 0, 0.5)",
         }}
       >
         Teknolojilerimiz

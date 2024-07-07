@@ -49,12 +49,34 @@ const ConstSlider = ({ visible, delayOffset = 0 }) => {
     >
       <StyledBox
         visible={visible}
+        delay={1 + delayOffset}
+        order={(theme) => (theme.breakpoints.up("sm") ? 4 : 2)}
+        sx={{
+          right: { xs: "10%", sm: "5%" },
+          left: { xs: "10%", sm: "5%" },
+          top: { xs: "35%", sm: "0%", md: "15%" },
+        }}
+      >
+        <img
+          src={img2}
+          alt="Hero Banner"
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "10px",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
+          }}
+        />
+      </StyledBox>
+      <StyledBox
+        visible={visible}
         delay={0.5 + delayOffset}
         order={(theme) => (theme.breakpoints.up("sm") ? 5 : 1)}
         sx={{
           right: { sm: "5%" },
           left: { xs: "10%" },
-          top: { xs: "45%", sm: "15%", md: "20%" },
+          top: { xs: "45%", sm: "15%", md: "10%" },
         }}
       >
         <img
@@ -72,55 +94,10 @@ const ConstSlider = ({ visible, delayOffset = 0 }) => {
 
       <StyledBox
         visible={visible}
-        delay={1 + delayOffset}
-        order={(theme) => (theme.breakpoints.up("sm") ? 4 : 2)}
-        sx={{
-          right: { xs: "10%", sm: "5%" },
-          left: { xs: "10%", sm: "5%" },
-          top: { xs: "35%", sm: "0%", md: "20%" },
-        }}
-      >
-        <img
-          src={img2}
-          alt="Hero Banner"
-          style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: "10px",
-            objectFit: "cover",
-            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
-          }}
-        />
-      </StyledBox>
-
-      <StyledBox
-        visible={visible}
-        delay={1.2 + delayOffset}
-        order={(theme) => (theme.breakpoints.up("sm") ? 3 : 3)}
-        sx={{
-          right: { xs: "10%", sm: "10%" },
-          top: { xs: "25%", sm: "0%", md: "15%" },
-        }}
-      >
-        <img
-          src={img3}
-          alt="Hero Banner"
-          style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: "10px",
-            objectFit: "cover",
-            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
-          }}
-        />
-      </StyledBox>
-
-      <StyledBox
-        visible={visible}
         delay={1.5 + delayOffset}
         order={(theme) => (theme.breakpoints.up("sm") ? 2 : 4)}
         sx={{
-          left: { xs: "10%", sm: "10%" },
+          right: { sm: "5%" },
           top: { xs: "10%", sm: "5%", md: "15%" },
         }}
       >
@@ -139,12 +116,34 @@ const ConstSlider = ({ visible, delayOffset = 0 }) => {
 
       <StyledBox
         visible={visible}
+        delay={1.2 + delayOffset}
+        order={(theme) => (theme.breakpoints.up("sm") ? 3 : 3)}
+        sx={{
+          right: { xs: "10%", sm: "10%" },
+          top: { xs: "25%", sm: "0%", md: "10%" },
+        }}
+      >
+        <img
+          src={img3}
+          alt="Hero Banner"
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "10px",
+            objectFit: "cover",
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
+          }}
+        />
+      </StyledBox>
+
+      <StyledBox
+        visible={visible}
         delay={1.6 + delayOffset}
         order={(theme) => (theme.breakpoints.up("sm") ? 1 : 5)}
         sx={{
           width: { xs: "80%", sm: "70%", md: "70%" },
           height: { xs: "40%", sm: "60%", md: "70%" },
-          top: { xs: "5%", sm: "10%", md: "5%" },
+          top: { xs: "5%", sm: "10%", md: "0%" },
           left: { xs: "10%", sm: "15%" },
         }}
       >

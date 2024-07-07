@@ -87,6 +87,7 @@ const HeroBody = ({ text }) => {
             fontSize: { xs: "2rem", md: "3rem" },
             textAlign: "center",
             zIndex: 1000,
+            textShadow: "0 1px 3px rgba(0, 0, 0, 0.5)",
             [isMobile ? "width" : "maxWidth"]: isMobile ? "100%" : "80%",
             opacity: showTypography ? 1 : 0,
             animation: showTypography

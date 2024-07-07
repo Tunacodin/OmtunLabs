@@ -52,7 +52,7 @@ const Footer = () => {
         padding: "4rem 2rem",
         mt: "auto",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-around",
         opacity: isVisible ? 1 : 0,
@@ -233,12 +233,22 @@ const Footer = () => {
                 },
               }}
             />
-            <Button variant="contained" sx={{ borderRadius: "4px",backgroundColor: colors.mor }}>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: "4px", backgroundColor: colors.mor }}
+            >
               Abone Ol
             </Button>
           </Box>
         </Grid>
       </Grid>
+
+      {/* Telif Hakkı Bölümü */}
+      <Box sx={{ mt: "2rem", textAlign: "center", width: "100%" }}>
+        <Typography variant="body2" sx={{ color: colors.white }}>
+          © {new Date().getFullYear()} OmTunLabs. Tüm hakları saklıdır.
+        </Typography>
+      </Box>
     </Box>
   );
 };

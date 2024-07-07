@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button, IconButton, Paper, Typography, Box } from "@mui/material";
-import Fingerprint from "@mui/icons-material/Fingerprint";
+import { Button, Paper, Typography, Box, IconButton } from "@mui/material";
 import ArrowOutward from "@mui/icons-material/ArrowOutward";
 import RateDiv from "./Rating";
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
+import CloseIcon from "@mui/icons-material/Close";
 import "../App.css";
 
 const rateValues = [4.2, 4.5, 4.9, 5.0];
@@ -12,31 +12,47 @@ const rateValues = [4.2, 4.5, 4.9, 5.0];
 const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
   const [style, setStyle] = useState({});
   const [isHovered, setIsHovered] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const isMobile = window.innerWidth <= 768; // Define mobile breakpoint as per your design
 
   const handleMouseMove = (e) => {
-    const { left, top, width, height } =
-      e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
+    if (!isMobile) {
+      const { left, top, width, height } =
+        e.currentTarget.getBoundingClientRect();
+      const x = (e.clientX - left) / width;
+      const y = (e.clientY - top) / height;
 
-    const rotateX = (y - 0.5) * 20; // Rotate by up to 20 degrees in Y axis
-    const rotateY = (x - 0.5) * -20; // Rotate by up to 20 degrees in X axis
+      const rotateX = (y - 0.5) * 20; // Rotate by up to 20 degrees in Y axis
+      const rotateY = (x - 0.5) * -20; // Rotate by up to 20 degrees in X axis
 
-    setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-    });
+      setStyle({
+        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+      });
+    }
   };
 
   const handleMouseLeave = () => {
-    setStyle({
-      transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
-      transition: "transform 0.3s ease", // Smoothly return to original state
-    });
-    setIsHovered(false);
+    if (!isMobile) {
+      setStyle({
+        transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
+        transition: "transform 0.3s ease", // Smoothly return to original state
+      });
+      setIsHovered(false);
+    }
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (!isMobile) {
+      setIsHovered(true);
+    }
+  };
+
+  const toggleDetails = () => {
+    setShowDetails(!showDetails);
+  };
+
+  const closeDetails = () => {
+    setShowDetails(false);
   };
 
   return (
@@ -92,8 +108,8 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: "1.1rem", // Font boyutu
-          borderRadius: "0rem 1rem 0rem 1rem",
+          fontSize: "1.1rem", // Font size
+          borderRadius: "0 1rem 0 0",
         }}
       >
         <Typography
@@ -102,7 +118,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
             fontFamily: "Poppins",
             textAlign: "start",
             fontWeight: 300,
-            margin: 0, // H3 içeriğinin kenar boşluğunu sıfırla
+            margin: 0, // Reset margin for h3 content
           }}
         >
           {text}
@@ -111,18 +127,40 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
 
       <Box
         sx={{
-          width: "100%",
+          alignSelf: "center",
+          width: "90%",
           height: "10%",
           display: "flex",
           justifyContent: showSourceCode ? "space-evenly" : "center",
           alignItems: "center",
           zIndex: 1,
+          gap: "1rem",
           position: "absolute",
           bottom: 0,
-          left: 0,
           fontFamily: "Poppins",
         }}
       >
+        <Button
+          sx={{
+            borderRadius: 0,
+            width: showSourceCode ? "45%" : "90%",
+            height: "60%",
+            fontSize: ".8rem",
+            backgroundColor: colors.mor,
+            color: "white",
+            textAlign: "center",
+            padding: "5px",
+            transition: "background-color 0.5s ease-in-out",
+            "&:hover": {
+              backgroundColor: darkColors.mor,
+            },
+            display: showDetails ? "none" : "block", // Hide in mobile view when details are shown
+          }}
+          onClick={toggleDetails}
+        >
+          Detay
+        </Button>
+
         <Button
           sx={{
             width: showSourceCode ? "45%" : "90%",
@@ -130,6 +168,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
             fontSize: ".8rem",
             backgroundColor: colors.mor,
             color: "white",
+            borderRadius: 0,
             transition: "background-color 0.5s ease-in-out",
             "&:hover": {
               backgroundColor: darkColors.mor,
@@ -141,42 +180,6 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
         >
           Siteyi Göster
         </Button>
-
-        {showSourceCode && (
-          <Box
-            sx={{
-              borderWidth: "1px",
-              borderStyle: "solid",
-              borderColor: colors.mor,
-              width: "50%",
-              height: "70%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              borderRadius: "1rem",
-              gap: "1rem",
-            }}
-          >
-            <IconButton
-              aria-label="fingerprint"
-              color="secondary"
-              sx={{ width: "40px", height: "40px" }}
-              href={linkgit}
-            >
-              <Fingerprint />
-            </IconButton>
-            <Typography
-              variant="body2"
-              sx={{
-                fontFamily: "Poppins",
-                marginLeft: "-2rem",
-              }}
-            >
-              Kaynak Kod
-            </Typography>
-          </Box>
-        )}
       </Box>
 
       <Box
@@ -191,15 +194,39 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
         <RateDiv defaultValue={rateValues[0]} precision={0.1} />
       </Box>
 
+      {/* Additional details section */}
       <Box
         sx={{
           position: "absolute",
-          bottom: isHovered ? "20%" : "10%",
+          top: "5%",
+          right: "5%",
+          display: showDetails ? "block" : "none",
+          zIndex: 2,
+        }}
+      >
+        <IconButton
+          sx={{
+            backgroundColor: colors.mor,
+            color: "white",
+            "&:hover": {
+              backgroundColor: darkColors.mor,
+            },
+          }}
+          onClick={closeDetails}
+        >
+          <CloseIcon />
+        </IconButton>
+      </Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: showDetails ? "20%" : "10%",
           width: "90%",
           height: "68%",
           display: "flex",
           justifyContent: "center",
-          opacity: isHovered ? 1 : 0,
+          opacity: showDetails ? 1 : 0,
           transition: "bottom 0.5s ease, opacity 0.5s ease",
           backgroundColor: "rgba(0, 0, 0, 0.7)",
           color: "white",
@@ -211,7 +238,6 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
       >
         <Typography
           variant="body1"
-          p={3}
           sx={{
             textAlign: "center",
             fontFamily: "Poppins",
