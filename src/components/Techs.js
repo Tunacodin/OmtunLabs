@@ -12,14 +12,14 @@ import img7 from "../img/web4.png";
 import img8 from "../img/web6.png";
 import "../App.css";
 
-const WhatWeDo = ({ style }) => {
+const Techs = ({ style }) => {
   const webImages = [img1, img2, img3];
   const mobileImages = [img4, img5, img6];
   const desktopImages = [img8, img7, img4, img5, img6];
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-  const jobsContainerHeight = isMobile ? "250px" : "300px"; // Increased height
+  const jobsContainerHeight = isMobile ? "250px" : "300px"; // Adjusted height for better visibility
 
   const [visibleSections, setVisibleSections] = useState({
     title: false,
@@ -61,6 +61,7 @@ const WhatWeDo = ({ style }) => {
 
   return (
     <Box
+      id="techs"
       sx={{
         width: "100%",
         backgroundColor: colors.black,
@@ -92,6 +93,7 @@ const WhatWeDo = ({ style }) => {
         Teknolojilerimiz
       </Typography>
 
+      {/* Jobs component for Web Technologies */}
       <Box
         ref={webRef}
         className={visibleSections.web ? "fadeInUp" : ""}
@@ -128,6 +130,7 @@ const WhatWeDo = ({ style }) => {
         />
       </Box>
 
+      {/* Jobs component for Mobile Technologies */}
       <Box
         ref={mobileRef}
         className={visibleSections.mobile ? "fadeInUp" : ""}
@@ -161,6 +164,7 @@ const WhatWeDo = ({ style }) => {
         />
       </Box>
 
+      {/* Jobs component for Desktop Applications */}
       <Box
         ref={desktopRef}
         className={visibleSections.desktop ? "fadeInUp" : ""}
@@ -195,4 +199,4 @@ const WhatWeDo = ({ style }) => {
   );
 };
 
-export default WhatWeDo;
+export default Techs;

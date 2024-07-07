@@ -183,10 +183,10 @@ const MainNav2 = () => {
           <StyledLink to="hero" smooth={true} duration={500}>
             <Home /> Anasayfa
           </StyledLink>
-          <StyledLink to="tech" smooth={true} duration={500}>
+          <StyledLink to="techs" smooth={true} duration={500}>
             <BuildIcon /> Teknolojiler
           </StyledLink>
-          <StyledLink to="catalog" smooth={true} duration={500}>
+          <StyledLink to="products" smooth={true} duration={500}>
             <MenuBook /> Ürünler
           </StyledLink>
           <StyledLink to="contact" smooth={true} duration={500}>
@@ -215,10 +215,10 @@ const MainNav2 = () => {
           <StyledLink to="hero" smooth={true} duration={500}>
             <Home /> Anasayfa
           </StyledLink>
-          <StyledLink to="catalog" smooth={true} duration={500}>
+          <StyledLink to="products" smooth={true} duration={500}>
             <MenuBook /> Ürünler
           </StyledLink>
-          <StyledLink to="technologies" smooth={true} duration={500}>
+          <StyledLink to="hero-body" smooth={true} duration={500}>
             
               <BuildIcon /> Teknolojiler
                 </StyledLink>

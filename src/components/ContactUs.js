@@ -34,6 +34,7 @@ const ContactUs = () => {
   return (
     <Box
       ref={formRef}
+      id="contact"
       sx={{
         width: "100%",
         minHeight: "100vh",
@@ -89,6 +90,7 @@ const ContactUs = () => {
               label="Name"
               type="text"
               size="medium"
+              color="secondary"
               InputProps={{
                 sx: {
                   color: "white",
@@ -118,6 +120,7 @@ const ContactUs = () => {
             <TextField
               fullWidth
               label="Subject"
+              color="secondary"
               InputProps={{
                 sx: {
                   color: "black",
@@ -135,6 +138,7 @@ const ContactUs = () => {
               label="Message"
               multiline
               rows={4}
+              color="secondary"
               InputProps={{
                 sx: {
                   color: "black",
@@ -151,6 +155,7 @@ const ContactUs = () => {
             <Button
               variant="contained"
               fullWidth
+              color="secondary"
               sx={{
                 backgroundColor: darkColors.black,
                 color: colors.white,

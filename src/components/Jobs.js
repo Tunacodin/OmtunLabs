@@ -1,58 +1,33 @@
-import React, { useState, useRef } from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  Grid,
-  useMediaQuery,
-  Stack,
-} from "@mui/material";
-import Carousel from "./Carousel";
+import React, { useState } from "react";
+import { Box, Typography, Button, Grid, useMediaQuery } from "@mui/material";
+import Carousel from "./Carousel"; // Ensure this import path is correct
 import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
-import TeklifAl from "./TeklifAl";
+import "../App.css";
 
-
-const Jobs = ({
-images,
-  style,
-  h1,
-  p,
-  bg,
-  color,
-  btncolor,
-  features,
-}) => {
-  const [hover, setHover] = useState(false);
+const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
   const [clicked, setClicked] = useState(false);
-  const detailsRef = useRef(null);
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery((theme) =>
-    theme.breakpoints.between("sm", "md")
-  );
 
-  const handleMouseEnter = () => setHover(true);
-  const handleMouseLeave = () => !clicked && setHover(false);
   const handleClick = () => setClicked(!clicked);
 
   return (
     <Grid
       container
-      spacing={2}
       sx={{
         width: { xs: "90%", sm: "80%", md: "60%" },
         boxShadow: 3,
         borderRadius: 1,
         position: "relative",
         overflow: "hidden",
-marginLeft:.5,        
+        marginLeft: 0.5,
         ...style,
       }}
     >
       <Grid
         item
         xs={12}
-        md={6}
+        md={8}
         sx={{
           height: { xs: "200px", md: "100%" },
           backgroundColor: darkColors.black,
@@ -62,6 +37,8 @@ marginLeft:.5,
           flexDirection: "column",
           position: "relative",
           overflow: "hidden",
+          padding: "1rem",
+          textAlign: "center",
         }}
       >
         <Typography
@@ -88,11 +65,9 @@ marginLeft:.5,
           {p}
         </Typography>
         <Button
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           onClick={handleClick}
           sx={{
-            color: colors.black,
+            color: clicked ? colors.white : colors.black,
             width: "6rem",
             borderRadius: 1,
             padding: ".4rem",
@@ -102,18 +77,14 @@ marginLeft:.5,
             fontWeight: 500,
             fontSize: "0.75rem",
             boxShadow: 4,
-            backgroundColor: colors.white,
+            backgroundColor: clicked ? colors.mor : colors.white,
             transition:
               "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
             mt: 2,
-            ...(hover && {
-              backgroundColor: bg,
-              color: color,
-            }),
-            ...(clicked && {
-              backgroundColor: bg,
-              color: color,
-            }),
+            "&:hover": {
+              backgroundColor: colors.mor,
+              color: colors.white,
+            },
           }}
         >
           Daha Fazla
@@ -123,28 +94,60 @@ marginLeft:.5,
       <Grid
         item
         xs={12}
-        md={6}
+        md={4}
         sx={{
           height: { xs: "200px", md: "100%" },
-          mt: { xs: 2, md: 0 },
-          
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <Box
-          sx={{
+        <Carousel
+          images={images}
+          style={{
             width: "100%",
             height: "100%",
+            objectFit: "cover",
+            borderRadius: 1,
+            margin: 0,
+          }}
+        />
+
+        <Box
+          className={`slide-left ${
+            clicked ? "slide-left-in" : "slide-left-out"
+          }`}
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: darkColors.black,
+            color: colors.white,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            padding: 2,
+            zIndex: clicked ? 1 : -1,
+            transition: "opacity 0.5s ease-in-out",
+            opacity: clicked ? 1 : 0,
           }}
         >
-          <Carousel
-            images={images}
-            style={{
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-              borderRadius: 1,
-            }}
-          />
+          <Typography variant="h4" sx={{ fontFamily: "Anton", pb: 2 }}>
+            Özellikler
+          </Typography>
+          <ul>
+            {features.map((feature, index) => (
+              <li
+                key={index}
+                style={{ fontFamily: "Poppins", fontSize: "1rem" }}
+              >
+                {feature}
+              </li>
+            ))}
+          </ul>
         </Box>
       </Grid>
     </Grid>

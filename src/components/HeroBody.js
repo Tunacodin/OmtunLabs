@@ -62,7 +62,9 @@ const HeroBody = ({ text }) => {
   }, [visible]);
 
   return (
-    <StyledDiv>
+    <StyledDiv
+    id="hero-body"
+    >
       <Box
         sx={{
           width: "80%",

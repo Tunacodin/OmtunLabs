@@ -7,6 +7,7 @@ import {
   TextField,
   Typography,
   useMediaQuery,
+  IconButton,
 } from "@mui/material";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 import colors from "../consts/colors";
@@ -133,17 +134,73 @@ const Footer = () => {
               gap: "1rem",
             }}
           >
-            <Link href="#" color="inherit">
-              <Facebook />
+            <Link
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener"
+            >
+              <IconButton
+                sx={{
+                  color: colors.white,
+                  transition: "color 0.3s, background 0.3s",
+                  "&:hover": {
+                    background: colors.white,
+                    color: colors.blue,
+                  },
+                }}
+              >
+                <Facebook />
+              </IconButton>
             </Link>
-            <Link href="#" color="inherit">
-              <Twitter />
+            <Link href="https://twitter.com" target="_blank" rel="noopener">
+              <IconButton
+                sx={{
+                  color: colors.white,
+                  transition: "color 0.3s, background 0.3s",
+                  "&:hover": {
+                    background: colors.white,
+                    color: colors.blue,
+                  },
+                }}
+              >
+                <Twitter />
+              </IconButton>
             </Link>
-            <Link href="#" color="inherit">
-              <Instagram />
+            <Link
+              href="https://www.instagram.com/omtun_labs/"
+              target="_blank"
+              rel="noopener"
+            >
+              <IconButton
+                sx={{
+                  color: colors.white,
+                  transition: "color 0.3s, background 0.3s",
+                  "&:hover": {
+                    background: colors.white,
+                    color: colors.mor,
+                  },
+                }}
+              >
+                <Instagram />
+              </IconButton>
             </Link>
-            <Link href="#" color="inherit">
-              <LinkedIn />
+            <Link
+              href="https://www.linkedin.com/company/omtun/posts/?feedView=all"
+              target="_blank"
+              rel="noopener"
+            >
+              <IconButton
+                sx={{
+                  color: colors.white,
+                  transition: "color 0.3s, background 0.3s",
+                  "&:hover": {
+                    background: colors.white,
+                    color: colors.blue,
+                  },
+                }}
+              >
+                <LinkedIn />
+              </IconButton>
             </Link>
           </Box>
         </Grid>
@@ -176,7 +233,7 @@ const Footer = () => {
                 },
               }}
             />
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" sx={{ borderRadius: "4px",backgroundColor: colors.mor }}>
               Abone Ol
             </Button>
           </Box>

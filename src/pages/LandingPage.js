@@ -4,19 +4,18 @@ import HeroBody from "../components/HeroBody";
 import Footer from "../components/Footer";
 import Social from "../components/Social";
 import ContactUs from "../components/ContactUs";
-
-import WhatWeDo from "../components/WhatWeDo";
 import Products from "../components/Products";
+import Techs from "../components/Techs";
 
 const LandingPage = () => {
   return (
     <div>
       <Social />
-      <HeroHeader id="hero" />
+      <HeroHeader id="anasayfa" />
       <HeroBody id="hero-body" />
-      <WhatWeDo id="what-we-do" />
-      <Products id="poducts" />
-      <ContactUs id="contact-us" />
+      <Techs id="techs" />
+      <Products id="products" />
+      <ContactUs id="contact" />
       <Footer />
     </div>
   );

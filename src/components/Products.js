@@ -111,7 +111,7 @@ const ProductsPage = () => {
 
   return (
     <Box
-      id="open-source"
+      id="products"
       sx={{
         width: "100%",
         minHeight: "60vh",

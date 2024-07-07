@@ -41,7 +41,11 @@ const Social = () => {
         },
       }}
     >
-      <Link href="https://www.instagram.com" target="_blank" rel="noopener">
+      <Link
+        href="https://www.instagram.com/omtun_labs/"
+        target="_blank"
+        rel="noopener"
+      >
         <IconButton
           size="large"
           sx={{
@@ -56,7 +60,11 @@ const Social = () => {
           <Instagram />
         </IconButton>
       </Link>
-      <Link href="https://www.linkedin.com" target="_blank" rel="noopener">
+      <Link
+        href="https://www.linkedin.com/company/omtun/posts/?feedView=all"
+        target="_blank"
+        rel="noopener"
+      >
         <IconButton
           sx={{
             color: colors.white,
@@ -70,11 +78,7 @@ const Social = () => {
           <LinkedIn />
         </IconButton>
       </Link>
-      <Link
-        href="https://wa.me/yourwhatsappnumber"
-        target="_blank"
-        rel="noopener"
-      >
+      <Link href="https://wa.me/05387227258" target="_blank" rel="noopener">
         <IconButton
           sx={{
             color: colors.white,
