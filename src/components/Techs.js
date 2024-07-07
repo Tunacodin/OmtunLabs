@@ -11,6 +11,7 @@ import img6 from "../img/web2.png";
 import img7 from "../img/web4.png";
 import img8 from "../img/web6.png";
 import "../App.css";
+import darkColors from "../consts/darkColors";
 
 const Techs = ({ style }) => {
   const webImages = [img1, img2, img3];
@@ -64,13 +65,13 @@ const Techs = ({ style }) => {
       id="techs"
       sx={{
         width: "100%",
-        backgroundColor: colors.black,
+        backgroundColor: darkColors.black,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         marginX: "auto",
-        gap: 4,
+        gap: 2,
         pt: 5,
         pb: 6,
         ...style,
@@ -85,7 +86,8 @@ const Techs = ({ style }) => {
           fontFamily: "Anton",
           color: colors.white,
           textAlign: "center",
-          paddingY: 3,
+          paddingTop: 3,
+          marginTop: 5,
           opacity: visibleSections.title ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
           textShadow: "2px 11px 10px rgba(0, 0, 0, 0.5)",
@@ -104,6 +106,7 @@ const Techs = ({ style }) => {
           justifyContent: "center",
           opacity: visibleSections.web ? 1 : 0,
           transition: "opacity 0.5s ease-in-out",
+          borderRadius: "5rem",
         }}
       >
         <Jobs

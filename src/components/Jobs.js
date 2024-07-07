@@ -19,8 +19,6 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
         boxShadow: 3,
         borderRadius: 1,
         position: "relative",
-        display: "flex",
-        flexDirection: isMobile ? "row" : "column",
         overflow: "hidden",
         marginLeft: 0.5,
         ...style,
@@ -32,7 +30,7 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
         md={8}
         sx={{
           height: { xs: "200px", md: "100%" },
-          backgroundColor: darkColors.black,
+          backgroundColor: "rgba(5, 5, 5, 0.3)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -66,33 +64,31 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
         >
           {p}
         </Typography>
-        {isMobile && (
-          <Button
-            onClick={handleClick}
-            sx={{
-              color: clicked ? colors.white : colors.black,
-              width: "6rem",
-              borderRadius: 1,
-              padding: ".4rem",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "Poppins",
-              fontWeight: 500,
-              fontSize: "0.75rem",
-              boxShadow: 4,
-              backgroundColor: clicked ? colors.mor : colors.white,
-              transition:
-                "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
-              mt: 2,
-              "&:hover": {
-                backgroundColor: colors.mor,
-                color: colors.white,
-              },
-            }}
-          >
-            Daha Fazla
-          </Button>
-        )}
+        <Button
+          onClick={handleClick}
+          sx={{
+            color: clicked ? colors.white : colors.black,
+            width: "6rem",
+            borderRadius: 1,
+            padding: ".4rem",
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "Poppins",
+            fontWeight: 500,
+            fontSize: "0.75rem",
+            boxShadow: 4,
+            backgroundColor: clicked ? colors.mor : colors.white,
+            transition:
+              "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
+            mt: 2,
+            "&:hover": {
+              backgroundColor: colors.mor,
+              color: colors.white,
+            },
+          }}
+        >
+          Daha Fazla
+        </Button>
       </Grid>
 
       <Grid
@@ -116,50 +112,43 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
           }}
         />
 
-        {isMobile && (
-          <Box
-            className={`slide-left ${
-              clicked ? "slide-left-in" : "slide-left-out"
-            }`}
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: darkColors.black,
-              color: colors.white,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              padding: 2,
-              zIndex: clicked ? 1 : -1,
-              transition: "opacity 0.5s ease-in-out",
-              opacity: clicked ? 1 : 0,
-            }}
-          >
-            <Typography
-              variant="h4"
-              sx={{ fontFamily: "Anton", paddingLeft: "1.5rem" }}
-            >
-              Özellikler
-            </Typography>
-            <ul>
-              {features.map((feature, index) => (
-                <li
-                  key={index}
-                  style={{
-                    fontFamily: "Poppins",
-                    fontSize: "1.1rem",
-                    textAlign: "left",
-                  }}
-                >
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </Box>
-        )}
+        <Box
+          className={`slide-left ${
+            clicked ? "slide-left-in" : "slide-left-out"
+          }`}
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: darkColors.black,
+            color: colors.white,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            padding: 2,
+            zIndex: clicked ? 1 : -1,
+            transition: "opacity 0.5s ease-in-out",
+            opacity: clicked ? 1 : 0,
+          }}
+        >
+          <Typography variant="h4" sx={{ fontFamily: "Anton", pb: 2 }}>
+            Özellikler
+          </Typography>
+          <ul>
+            {features.map((feature, index) => (
+              <li
+                key={index}
+                style={{ fontFamily: "Poppins", fontSize: "1rem" }}
+              >
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </Box>
       </Grid>
     </Grid>
   );

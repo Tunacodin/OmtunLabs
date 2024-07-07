@@ -33,18 +33,14 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   left: 0,
   zIndex: 1000,
   boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
-  transition: "background-color 0.5s, color 0.5s, transform 0.5s ease-in-out",
+  transition: "transform 1s ease-in-out",
   backgroundColor: darkColors.darkBlack,
   color: "#F7F7F7",
   "&.scroll-up": {
     transform: "translateY(0)",
-    backgroundColor: colors.white,
-    color: darkColors.darkBlack,
   },
   "&.scroll-down": {
     transform: "translateY(-100%)",
-    backgroundColor: darkColors.darkBlack,
-    color: "#F7F7F7",
   },
 }));
 
@@ -113,18 +109,19 @@ const DrawerContainer = styled(Box)(({ theme }) => ({
 const MainNav2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState("scroll-up");
 
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop && scrollTop > 200) {
+
+    if (scrollTop > lastScrollTop) {
       // Scroll down
-      document.body.classList.add("scroll-down");
-      document.body.classList.remove("scroll-up");
+      setScrollDirection("scroll-down");
     } else {
       // Scroll up
-      document.body.classList.remove("scroll-down");
-      document.body.classList.add("scroll-up");
+      setScrollDirection("scroll-up");
     }
+
     setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
   };
 
@@ -140,7 +137,7 @@ const MainNav2 = () => {
   };
 
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar className={scrollDirection}>
       <StyledToolbar>
         <Box
           sx={{
@@ -219,10 +216,9 @@ const MainNav2 = () => {
           <StyledLink to="products" smooth={true} duration={500}>
             <MenuBook /> Ürünler
           </StyledLink>
-          <StyledLink to="hero-body" smooth={true} duration={500}>
-            
-              <BuildIcon /> Teknolojiler
-                </StyledLink>
+          <StyledLink to="techs" smooth={true} duration={500}>
+            <BuildIcon /> Teknolojiler
+          </StyledLink>
           <StyledLink to="contact" smooth={true} duration={500}>
             <ContactMail /> İletişim
           </StyledLink>

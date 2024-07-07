@@ -55,7 +55,7 @@ const Footer = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-around",
-        opacity: isVisible ? 1 : 0,
+        opacity: 1,
         transition: "opacity 0.5s ease-in-out",
       }}
     >

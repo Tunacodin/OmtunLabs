@@ -7,6 +7,7 @@ import darkColors from "../consts/darkColors";
 import CloseIcon from "@mui/icons-material/Close";
 import "../App.css";
 import weblogo from "../img/omtunblack.png";
+
 const rateValues = [4.2, 4.5, 4.9, 5.0];
 
 const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
@@ -88,7 +89,6 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           top: 0,
           left: 0,
           opacity: isHovered ? 0.5 : 1,
-          opacity: showDetails ? 0.5 : 1,
           transition: "opacity 0.5s ease",
           borderRadius: "1rem",
         }}
@@ -155,9 +155,8 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
             "&:hover": {
               backgroundColor: darkColors.mor,
             },
-            display: showDetails ? "none" : "flex", // Hide in mobile view when details are shown
             display: {
-              xs: "flex",
+              xs: showDetails ? "none" : "flex", // Hide in mobile view when details are shown
               md: "none",
             },
           }}
@@ -228,12 +227,11 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           position: "absolute",
           bottom: showDetails ? "20%" : "10%",
           width: "90%",
-          height: "68%",
+          height: "75%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-evenly",
-          opacity: isHovered ? 1 : 0,
-          opacity: showDetails ? 1 : 0,
+          opacity: isHovered || showDetails ? 1 : 0,
           cursor: "pointer",
           transition: "bottom 0.5s ease, opacity 0.5s ease",
           backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -242,10 +240,9 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           borderRadius: "1rem",
           alignSelf: "center",
           alignItems: "center",
-
         }}
       >
-        <Box sx={{ width: "10rem", height: "5rem", }}>
+        <Box sx={{ width: "10rem", height: "5rem" }}>
           <img
             src={weblogo}
             alt="weblogo"
@@ -253,7 +250,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              objectPosition:"start",
+              objectPosition: "start",
             }}
           />
         </Box>
@@ -263,7 +260,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
             textAlign: "center",
             fontFamily: "Poppins",
             fontWeight: 500,
-            fontSize: {sx: "1rem", md: "1.5rem"},
+            fontSize: { sx: "1rem", md: "1.2rem" },
             cursor: "pointer",
           }}
         >
