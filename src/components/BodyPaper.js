@@ -6,7 +6,7 @@ import colors from "../consts/colors";
 import darkColors from "../consts/darkColors";
 import CloseIcon from "@mui/icons-material/Close";
 import "../App.css";
-
+import weblogo from "../img/omtunblack.png";
 const rateValues = [4.2, 4.5, 4.9, 5.0];
 
 const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
@@ -88,6 +88,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           top: 0,
           left: 0,
           opacity: isHovered ? 0.5 : 1,
+          opacity: showDetails ? 0.5 : 1,
           transition: "opacity 0.5s ease",
           borderRadius: "1rem",
         }}
@@ -154,7 +155,11 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
             "&:hover": {
               backgroundColor: darkColors.mor,
             },
-            display: showDetails ? "none" : "block", // Hide in mobile view when details are shown
+            display: showDetails ? "none" : "flex", // Hide in mobile view when details are shown
+            display: {
+              xs: "flex",
+              md: "none",
+            },
           }}
           onClick={toggleDetails}
         >
@@ -225,8 +230,11 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           width: "90%",
           height: "68%",
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          opacity: isHovered ? 1 : 0,
           opacity: showDetails ? 1 : 0,
+          cursor: "pointer",
           transition: "bottom 0.5s ease, opacity 0.5s ease",
           backgroundColor: "rgba(0, 0, 0, 0.7)",
           color: "white",
@@ -234,14 +242,29 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
           borderRadius: "1rem",
           alignSelf: "center",
           alignItems: "center",
+
         }}
       >
+        <Box sx={{ width: "10rem", height: "5rem", }}>
+          <img
+            src={weblogo}
+            alt="weblogo"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition:"start",
+            }}
+          />
+        </Box>
         <Typography
           variant="body1"
           sx={{
             textAlign: "center",
             fontFamily: "Poppins",
             fontWeight: 500,
+            fontSize: {sx: "1rem", md: "1.5rem"},
+            cursor: "pointer",
           }}
         >
           {desc}
