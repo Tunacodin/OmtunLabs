@@ -127,7 +127,7 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "start",
             textAlign: "center",
             padding: 2,
             zIndex: clicked ? 1 : -1,
@@ -135,14 +135,14 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
             opacity: clicked ? 1 : 0,
           }}
         >
-          <Typography variant="h4" sx={{ fontFamily: "Anton", pb: 2 }}>
+          <Typography variant="h4" sx={{ fontFamily: "Anton", pb: 2 ,pl:4}}>
             Özellikler
           </Typography>
           <ul>
             {features.map((feature, index) => (
               <li
                 key={index}
-                style={{ fontFamily: "Poppins", fontSize: "1rem" }}
+                style={{ fontFamily: "Poppins", fontSize: "1rem",textAlign: "left" }}
               >
                 {feature}
               </li>

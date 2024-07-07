@@ -31,14 +31,14 @@ const PrimaryButton = ({
     <div
       style={{
         position: "absolute",
-        width: "fit-content", // Adjusted to fit content width
+        width: "6%", // Adjusted to fit content width
         zIndex: 600,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
         bottom: "30%",
-        borderRadius: "3rem",
+        borderRadius: "1rem",
         backgroundColor: colors.black,
         margin: "auto",
         fontFamily: fontFamily ? fontFamily : "Poppins, sans-serif",
@@ -49,6 +49,7 @@ const PrimaryButton = ({
         variant=""
         size="large"
         sx={{
+          width: "100%",
           color: "white",
           boxShadow: "0px 30px 30px rgba(0, 0, 0, 0.15)",
           background: `linear-gradient(
@@ -64,7 +65,6 @@ const PrimaryButton = ({
           },
         }}
         style={{
-          borderRadius: "3rem",
           fontFamily: fontFamily ? fontFamily : "Anton",
           fontSize: fontSize ? fontSize : "1.5rem",
           fontWeight: fontWeight ? fontWeight : 400,
