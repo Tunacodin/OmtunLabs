@@ -59,36 +59,38 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
             fontFamily: "Poppins",
             fontWeight: 500,
             color: colors.white,
-            fontSize: { xs: "0.875rem", md: "1rem" },
+            fontSize: { xs: "1rem", md: "1.2rem" },
           }}
         >
           {p}
         </Typography>
-        <Button
-          onClick={handleClick}
-          sx={{
-            color: clicked ? colors.white : colors.black,
-            width: "6rem",
-            borderRadius: 1,
-            padding: ".4rem",
-            border: "none",
-            cursor: "pointer",
-            fontFamily: "Poppins",
-            fontWeight: 500,
-            fontSize: "0.75rem",
-            boxShadow: 4,
-            backgroundColor: clicked ? colors.mor : colors.white,
-            transition:
-              "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
-            mt: 2,
-            "&:hover": {
-              backgroundColor: colors.mor,
-              color: colors.white,
-            },
-          }}
-        >
-          Daha Fazla
-        </Button>
+        {!isMobile && (
+          <Button
+            onClick={handleClick}
+            sx={{
+              color: clicked ? colors.white : colors.black,
+              width: "6rem",
+              borderRadius: 1,
+              padding: ".4rem",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "Poppins",
+              fontWeight: 500,
+              fontSize: "0.75rem",
+              boxShadow: 4,
+              backgroundColor: clicked ? colors.mor : colors.white,
+              transition:
+                "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
+              mt: 2,
+              "&:hover": {
+                backgroundColor: colors.mor,
+                color: colors.white,
+              },
+            }}
+          >
+            Daha Fazla
+          </Button>
+        )}
       </Grid>
 
       <Grid
@@ -101,16 +103,18 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
           overflow: "hidden",
         }}
       >
-        <Carousel
-          images={images}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius: 1,
-            margin: 0,
-          }}
-        />
+        {!isMobile && (
+          <Carousel
+            images={images}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: 1,
+              margin: 0,
+            }}
+          />
+        )}
 
         <Box
           className={`slide-left ${
@@ -135,14 +139,18 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
             opacity: clicked ? 1 : 0,
           }}
         >
-          <Typography variant="h4" sx={{ fontFamily: "Anton", pb: 2 ,pl:4}}>
+          <Typography variant="h4" sx={{ fontFamily: "Anton", pb: 2, pl: 4 }}>
             Özellikler
           </Typography>
           <ul>
             {features.map((feature, index) => (
               <li
                 key={index}
-                style={{ fontFamily: "Poppins", fontSize: "1rem",textAlign: "left" }}
+                style={{
+                  fontFamily: "Poppins",
+                  fontSize: "1rem",
+                  textAlign: "left",
+                }}
               >
                 {feature}
               </li>

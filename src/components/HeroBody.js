@@ -20,11 +20,11 @@ const StyledDiv = styled("div")({
 
 const fadeInUp = keyframes`
   from {
-    opacity: 0;
+    
     transform: translateY(20px);
   }
   to {
-    opacity: 1;
+  
     transform: translateY(0);
   }
 `;
@@ -87,6 +87,7 @@ const HeroBody = ({ text }) => {
             fontSize: { xs: "2rem", md: "3rem" },
             textAlign: "center",
             zIndex: 1000,
+            paddingTop: isMobile ? "3rem" : "0rem",
             textShadow: "0 1px 3px rgba(0, 0, 0, 0.5)",
             [isMobile ? "width" : "maxWidth"]: isMobile ? "100%" : "80%",
             opacity: showTypography ? 1 : 0,

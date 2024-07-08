@@ -77,6 +77,7 @@ const ConstSlider = ({ visible, delayOffset = 0 }) => {
           right: { sm: "5%" },
           left: { xs: "10%" },
           top: { xs: "45%", sm: "15%", md: "10%" },
+          display: { xs: "none", sm: "flex" },
         }}
       >
         <img
@@ -99,6 +100,7 @@ const ConstSlider = ({ visible, delayOffset = 0 }) => {
         sx={{
           right: { sm: "5%" },
           top: { xs: "10%", sm: "5%", md: "15%" },
+          display: { xs: "none", sm: "flex" },
         }}
       >
         <img
@@ -143,7 +145,7 @@ const ConstSlider = ({ visible, delayOffset = 0 }) => {
         sx={{
           width: { xs: "80%", sm: "70%", md: "70%" },
           height: { xs: "40%", sm: "60%", md: "70%" },
-          top: { xs: "5%", sm: "10%", md: "0%" },
+          top: { xs: "15%", sm: "10%", md: "0%" },
           left: { xs: "10%", sm: "15%" },
         }}
       >
