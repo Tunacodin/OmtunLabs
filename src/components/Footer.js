@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
-  Button,
   Grid,
   Link,
-  TextField,
   Typography,
   useMediaQuery,
   IconButton,
 } from "@mui/material";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 import colors from "../consts/colors";
-import omtun from "../img/OmTunMobil.svg";
 import darkColors from "../consts/darkColors";
 
 const Footer = () => {
@@ -49,44 +46,35 @@ const Footer = () => {
       sx={{
         backgroundColor: darkColors.black,
         color: colors.white,
-        padding: "4rem 2rem",
+        height: "20vh",
         mt: "auto",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "center",
         opacity: 1,
         transition: "opacity 0.5s ease-in-out",
+        paddingBottom: "5rem",
       }}
     >
-      <Grid container spacing={5} style={{ width: "60%" }}>
-        {/* Şirket Bilgileri */}
-        <Grid item xs={12} md={3}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: isMobile ? "center" : "flex-start",
-              width: "100%",
-            }}
-          >
-            <img
-              src={omtun}
-              alt="omtun"
-              style={{
-                width: "10rem",
-                marginBottom: isMobile ? "1rem" : "2rem",
-              }}
-            />
-          </Box>
-        </Grid>
-
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+        style={{ width: "60%" }}
+      >
         {/* Hızlı Bağlantılar */}
-        <Grid item xs={12} md={3}>
+        <Grid
+          item
+          xs={12}
+          md={3}
+          sx={{ display: { xs: "none", sm: "block" }, textAlign: "center" }}
+        >
           <Typography variant="h6" gutterBottom>
             Hızlı Bağlantılar
           </Typography>
-          <Box sx={{ textAlign: isMobile ? "center" : "left" }}>
+          <Box>
             <Link
               href="#"
               color="inherit"
@@ -123,14 +111,14 @@ const Footer = () => {
         </Grid>
 
         {/* Sosyal Medya */}
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
           <Typography variant="h6" gutterBottom>
             Bizi Takip Edin
           </Typography>
           <Box
             sx={{
               display: "flex",
-              justifyContent: isMobile ? "center" : "flex-start",
+              justifyContent: "center",
               gap: "1rem",
             }}
           >
@@ -204,47 +192,10 @@ const Footer = () => {
             </Link>
           </Box>
         </Grid>
-
-        {/* Abonelik Formu */}
-        <Grid item xs={12} md={3} sx={{ display: { xs: "none", md: "block" } }}>
-          <Typography variant="h6" gutterBottom>
-            Abone Ol
-          </Typography>
-          <Typography variant="body2">
-            Yeni haberler ve güncellemeler için abone olun.
-          </Typography>
-          <Box
-            component="form"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              mt: "1rem",
-              alignItems: isMobile ? "center" : "flex-start",
-            }}
-          >
-            <TextField
-              variant="outlined"
-              placeholder="Email adresiniz"
-              sx={{
-                input: {
-                  backgroundColor: colors.white,
-                  borderRadius: "4px",
-                },
-              }}
-            />
-            <Button
-              variant="contained"
-              sx={{ borderRadius: "4px", backgroundColor: colors.mor }}
-            >
-              Abone Ol
-            </Button>
-          </Box>
-        </Grid>
       </Grid>
 
       {/* Telif Hakkı Bölümü */}
-      <Box sx={{ mt: "2rem", textAlign: "center", width: "100%" }}>
+      <Box sx={{ marginTop: "3rem", textAlign: "center", width: "100%" }}>
         <Typography variant="body2" sx={{ color: colors.white }}>
           © {new Date().getFullYear()} OmTunLabs. Tüm hakları saklıdır.
         </Typography>

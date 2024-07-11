@@ -156,6 +156,48 @@ const Jobs = ({ images, style, h1, p, bg, color, btncolor, features }) => {
               </li>
             ))}
           </ul>
+          {isMobile && (
+            <Box sx={{ display: "flex", flexDirection: "column", mt: 2 }}>
+              <Button
+                sx={{
+                  color: colors.white,
+                  backgroundColor: colors.mor,
+                  borderRadius: 1,
+                  padding: ".6rem 1.2rem",
+                  fontFamily: "Poppins",
+                  fontWeight: 500,
+                  fontSize: "1rem",
+                  boxShadow: 4,
+                  mt: 2,
+                  "&:hover": {
+                    backgroundColor: colors.mor,
+                    color: colors.white,
+                  },
+                }}
+              >
+                Detay
+              </Button>
+              <Button
+                sx={{
+                  color: colors.white,
+                  backgroundColor: colors.mor,
+                  borderRadius: 1,
+                  padding: ".6rem 1.2rem",
+                  fontFamily: "Poppins",
+                  fontWeight: 500,
+                  fontSize: "0.85rem",
+                  boxShadow: 4,
+                  mt: 2,
+                  "&:hover": {
+                    backgroundColor: colors.mor,
+                    color: colors.white,
+                  },
+                }}
+              >
+                Siteye Git
+              </Button>
+            </Box>
+          )}
         </Box>
       </Grid>
     </Grid>

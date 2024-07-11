@@ -16,25 +16,30 @@ const HeroHeader = ({ text }) => {
       setHeaderHeight(headerRef.current.clientHeight);
     }
   }, []);
+const scrollToSection = () => {
+  const section = document.getElementById("hero-body");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
   return (
     <div
       ref={headerRef}
       style={{
-        background: `linear-gradient(to top, rgba(255, 255, 255, 0) 15%, ${darkColors.black} 100%)`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        overflow: "hidden",
-        position: "relative",
+        overflow: "hidden",  
+       position: "relative ",
         marginTop: "2rem",
         boxShadow: "0px 3px 30px rgba(0, 0, 0, 1)",
         zIndex: 999,
       }}
     >
-      <PrimaryButton text="KEŞFET" />
+      <PrimaryButton onClick={scrollToSection} text="KEŞFET" />
       <div
         style={{
           height: "100vh", // Header boyutu %100 viewport yüksekliği

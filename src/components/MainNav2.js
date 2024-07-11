@@ -238,11 +238,13 @@ const MainNav2 = () => {
                 backgroundColor: colors.mor,
                 color: darkColors.darkBlack,
                 "&:hover": {
-                  backgroundColor: colors.mor,
-                  color: colors.white,
+                 backgroundColor: colors.white,
+                  color: darkColors.darkBlack,
+                  
                 },
                 ml: "auto",
               }}
+
             >
               Teklif Al
             </Button>

@@ -19,6 +19,8 @@ const PrimaryButton = ({
   fontSize,
   fontFamily,
   fontWeight,
+  link,
+  onClick,
   ...rest
 }) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -47,7 +49,9 @@ const PrimaryButton = ({
     >
       <Button
         variant=""
+        href={link}
         size="large"
+        onClick={onClick}
         sx={{
           width: "100%",
           color: "white",
