@@ -3,56 +3,49 @@ import { Grid, Box, Typography, useMediaQuery } from "@mui/material";
 import colors from "../consts/colors";
 import BodyPaper from "./BodyPaper";
 import darkColors from "../consts/darkColors";
-import img1 from "../img/web9.png";
-import img2 from "../img/web6.png";
-import img3 from "../img/web5.png";
-import img4 from "../img/web8.png";
-import img5 from "../img/web7.png";
+import img1 from "../img/otopark.png";
+import img2 from "../img/otopark mobil.png";
+import img3 from "../img/tugtek (2) (1).png";
+import img4 from "../img/elittur.png";
+import img5 from "../img/portfolyo.png";
 import img6 from "../img/web4.png";
 
 const paperInfo = [
   {
     img: img1,
-    text: "Ulaşım Uygulaması",
+    text: "Otopark Uygulaması",
     link: "http://www.elittur.com",
     linkgit: "https://github.com/OmTun-Labs/transporter-website",
     desc: "Ulaşım Araçlarının Kullanıcıya Hızlı ve Güvenilir Bir Şekilde Ulaşmasını Amaçladık",
   },
   {
     img: img2,
-    text: "Proje",
-    link: "http://www.mounth.com",
+    text: "Mobil Otopark Uygulaması",
     linkgit: "https://github.com/OmTun-Labs/transporter-website",
     desc: "Lojistik İşlemlerini İş Sahiplerinin Kesintisiz Doğru Bilgi İle Erişimini Sağladık",
   },
   {
     img: img3,
-    text: "Proje",
+    text: "TugTek Web Sitesi",
     link: "http://www.web1.com",
     linkgit: "https://github.com/OmTun-Labs/transporter-website",
     desc: "Öğrencilerin Not Tutmaları İçin Kullanışlı ve Kolay Anlaşılabilir Not Uygulması Tasarladık",
   },
   {
     img: img4,
-    text: "Ulaşım Uygulaması",
+    text: "Elit Tur Web Sitesi",
     link: "http://www.elittur.com",
     linkgit: "https://github.com/OmTun-Labs/transporter-website",
     desc: "Ulaşım Araçlarının Kullanıcıya Hızlı ve Güvenilir Bir Şekilde Ulaşmasını Amaçladık",
   },
   {
     img: img5,
-    text: "Proje",
+    text: "Kişisel Web Sitesi",
     link: "http://www.mounth.com",
     linkgit: "https://github.com/OmTun-Labs/transporter-website",
     desc: "Lojistik İşlemlerini İş Sahiplerinin Kesintisiz Doğru Bilgi İle Erişimini Sağladık",
   },
-  {
-    img: img6,
-    text: "Proje",
-    link: "http://www.web1.com",
-    linkgit: "https://github.com/OmTun-Labs/transporter-website",
-    desc: "Öğrencilerin Not Tutmaları İçin Kullanışlı ve Kolay Anlaşılabilir Not Uygulması Tasarladık",
-  },
+
 ];
 
 const ProductsPage = () => {
