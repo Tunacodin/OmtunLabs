@@ -18,6 +18,7 @@ const BodyPaper = ({ img, text, link, linkgit, desc, showSourceCode }) => {
 
   const handleMouseMove = (e) => {
     if (!isMobile) {
+      
       const { left, top, width, height } =
         e.currentTarget.getBoundingClientRect();
       const x = (e.clientX - left) / width;
